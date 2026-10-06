@@ -493,8 +493,19 @@ def write_exports(cfg, data, kols, squads):
     camp = cfg["campaign"]
     min_views = camp.get("min_views", 0)
     updated = kst(data.get("updated_at"))
-    names = {s["id"]: s["name"] for s in squads}
-    plat = {"telegram": "텔레그램", "x": "X"}
+    plat = {"telegram": "Telegram", "x": "X"}
+    sq_en = lambda sid: f"Squad {sid}"
+    kcfg = {k["name"]: k for k in cfg["kols"]}
+
+    def ident(name):
+        """조회수 앞에 공통으로 붙는 KOL 정보 열."""
+        k = kcfg.get(name, {})
+        tg = (k.get("telegram") or "").lstrip("@")
+        x = (k.get("x") or "").lstrip("@")
+        return [k.get("geo") or camp.get("geographic", "Korea"), sq_en(k.get("squad", "")), name,
+                k.get("aid", ""), f"https://t.me/{tg}" if tg else "", f"https://x.com/{x}" if x else ""]
+
+    ident_head = ["Geographic", "Squad", "Name", "AID", "Channels (TG)", "Channels (X)"]
 
     def save(name, header, rows):
         with open(EXPORT_DIR / name, "w", encoding="utf-8", newline="") as f:
@@ -502,21 +513,29 @@ def write_exports(cfg, data, kols, squads):
             w.writerow(header)
             w.writerows(rows)
 
+    # 스쿼드: A, B, C 순
     save("squads.csv",
-         ["순위", "스쿼드", "총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "조회수 최소 조건", "달성 여부", "업데이트(KST)"],
-         [[s["rank"], s["name"], s["views"], s["tg_views"], s["x_views"], s["posts"], min_views,
-           "달성" if min_views and s["views"] >= min_views else "미달", updated] for s in squads])
+         ["Squad", "순위", "총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "조회수 최소 조건", "달성 여부", "업데이트(KST)"],
+         [[sq_en(s["id"]), s["rank"], s["views"], s["tg_views"], s["x_views"], s["posts"], min_views,
+           "달성" if min_views and s["views"] >= min_views else "미달", updated]
+          for s in sorted(squads, key=lambda s: str(s["id"]))])
+
+    # KOL: config.json에 적힌 순서 그대로 고정
+    order = {k["name"]: i for i, k in enumerate(cfg["kols"])}
     save("kols.csv",
-         ["순위", "KOL", "스쿼드", "총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "텔레그램", "X"],
-         [[k["rank"], k["name"], names.get(k["squad"], k["squad"]), k["views"], k["tg_views"], k["x_views"],
-           k["posts"], k.get("telegram", ""), k.get("x", "")] for k in kols])
-    squad_of = {k["name"]: names.get(k["squad"], k["squad"]) for k in kols}
-    posts = [p for p in data["posts"].values() if not p.get("deleted") and not p.get("excluded") and p.get("kol") in squad_of]
+         ident_head + ["총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "전체 순위"],
+         [ident(k["name"]) + [k["views"], k["tg_views"], k["x_views"], k["posts"], k["rank"]]
+          for k in sorted(kols, key=lambda k: order.get(k["name"], 999))])
+
+    # 게시물: 최신순
+    posts = [p for p in data["posts"].values()
+             if not p.get("deleted") and not p.get("excluded") and p.get("kol") in kcfg]
     posts.sort(key=lambda p: p.get("created_at", ""), reverse=True)
     save("posts.csv",
-         ["게시일(KST)", "KOL", "스쿼드", "플랫폼", "조회수", "링크", "본문 미리보기"],
-         [[kst(p.get("created_at")), p["kol"], squad_of[p["kol"]], plat.get(p.get("platform"), p.get("platform", "")),
-           p.get("views", 0), p.get("url", ""), " ".join((p.get("text") or "").split())[:100]] for p in posts])
+         ident_head + ["게시일(KST)", "플랫폼", "조회수", "링크", "본문 미리보기"],
+         [ident(p["kol"]) + [kst(p.get("created_at")), plat.get(p.get("platform"), p.get("platform", "")),
+                             p.get("views", 0), p.get("url", ""), " ".join((p.get("text") or "").split())[:100]]
+          for p in posts])
 
 
 def main() -> int:
