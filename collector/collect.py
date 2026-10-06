@@ -25,6 +25,7 @@ CONFIG_PATH = ROOT / "config.json"
 DATA_PATH = ROOT / "docs" / "data.json"
 MANUAL_PATH = ROOT / "docs" / "manual_posts.csv"
 AVATAR_DIR = ROOT / "docs" / "avatars"
+EXCLUDED_PATH = ROOT / "docs" / "excluded_posts.txt"
 X_API = "https://api.x.com/2"
 HISTORY_MAX = 3000  # 30분 간격 기준 약 2개월
 
@@ -397,6 +398,17 @@ def load_manual_posts(cfg, data, now, errors):
     if seen:
         log(f"수동 입력 게시물 {len(seen)}개")
 
+def norm_url(u):
+    """링크 표기 차이 무시: http/https, www, 대소문자, ?뒤, t.me/s/, twitter.com, x.com/아이디/status."""
+    u = (u or "").strip().lower()
+    u = re.sub(r"^https?://", "", u)
+    u = re.sub(r"^(www\.|mobile\.)", "", u)
+    u = u.split("?")[0].split("#")[0].rstrip("/")
+    u = u.replace("twitter.com/", "x.com/").replace("t.me/s/", "t.me/")
+    m = re.match(r"x\.com/.*?status/(\d+)", u)
+    return f"x.com/status/{m.group(1)}" if m else u
+
+
 # ---------- 집계 ----------
 
 def aggregate(cfg, data):
@@ -479,9 +491,16 @@ def main() -> int:
         collected = True
 
     # 운영자가 수동으로 제외한 게시물 (config의 excluded_posts에 URL 입력)
-    excluded = {u.strip().rstrip("/") for u in camp.get("excluded_posts", []) if u.strip()}
+    excluded = {norm_url(u) for u in camp.get("excluded_posts", []) if u and u.strip()}
+    # docs/excluded_posts.txt: 한 줄에 링크 하나, 공백이나 # 뒤는 메모
+    if EXCLUDED_PATH.exists():
+        for line in EXCLUDED_PATH.read_text(encoding="utf-8-sig").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            excluded.add(norm_url(line.split()[0]))
     for p in data["posts"].values():
-        p["excluded"] = p.get("url", "").rstrip("/") in excluded
+        p["excluded"] = norm_url(p.get("url", "")) in excluded
 
     kols, squads = aggregate(cfg, data)
 
