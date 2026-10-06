@@ -4,9 +4,21 @@ on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "config.json"
+      - "collector/**"
+      - "docs/trading.csv"
+      - "docs/excluded_posts.txt"
+      - "docs/manual_posts.csv"
+      - "docs/*.md"
+      - "docs/index.html"
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: collect-views
@@ -16,6 +28,9 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -51,3 +66,13 @@ jobs:
             sleep 5
           done
           exit 1
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy dashboard
+        id: deployment
+        uses: actions/deploy-pages@v4
