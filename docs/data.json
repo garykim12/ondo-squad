@@ -17,7 +17,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdropcosm:3068": {
@@ -35,7 +35,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdropcosm:3073": {
@@ -54,7 +54,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20584": {
@@ -73,7 +73,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20587": {
@@ -92,7 +92,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20589": {
@@ -110,7 +110,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20592": {
@@ -128,7 +128,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20619": {
@@ -147,7 +147,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20692": {
@@ -156,17 +156,17 @@
    "url": "https://t.me/airdr0p_lab/20692",
    "text": "🟢 Ondo Perps, 10월 첫 주차 정산\n\n-총 거래량: 2.1M\n-소모 수수료: $370.07\n-리워드: $253.81\n-포인트: 약 8,000\n\n대부분의 주문은 Maker로 양빵잡고 있고 10월 30일까지 KBW 할인 들어가서 나름 알뜰하게 포인트 모았습니다.\n\n누적 포인트가 약 14,000 정도인데 리더보드 기준 500위권이라 생각보다 빈 집이라 양빵작 하시는 분들은 사용해보셔도 괜찮을 듯\n\n사용하실 분들은 아래링크 적용시 수수료 할인 30%가 적용되니 사용해주시면 압도적 감사...\n\n",
    "created_at": "2026-10-06T06:06:31Z",
-   "views": 832,
+   "views": 837,
    "forwards": 12,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 100,
+   "last_delta": 105,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:myu_moonyu:7894": {
@@ -185,7 +185,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:myu_moonyu:7895": {
@@ -203,7 +203,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:myu_moonyu:7897": {
@@ -221,7 +221,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:lnsanecoin:10967": {
@@ -240,7 +240,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:lnsanecoin:10972": {
@@ -258,7 +258,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:lnsanecoin:10974": {
@@ -276,7 +276,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdrop_kor:21495": {
@@ -296,7 +296,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdrop_kor:21496": {
@@ -305,7 +305,7 @@
    "url": "https://t.me/airdrop_kor/21496",
    "text": "Ondo 행사왔는데 문앞에 바로 아서헤이즈 ㄷㄷ\n\n온도 행사가 오늘은 사람 제일 몰린거 같네요. 준비를 상당히 잘한듯 \n\n방금 카카오페이증권 MOU 발표했는데, 카카오페이증권과 온도가 한국 상장 주식의 해외 유통 및 주식 토큰화 인프라 구축을 위한 MOU를 체결했다고 합니다. \n\n아직 상품 출시 여부나 시점은 미확정이지만 국내 시장을 공격적으로 진출하려는거 같아요.\n\nhttps://n.news.naver.com/article/014/0005582294?sid=101",
    "created_at": "2026-09-29T07:28:25Z",
-   "views": 1000,
+   "views": 1001,
    "forwards": 3,
    "keywords": [
     "Ondo",
@@ -315,7 +315,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:airdrop_kor:21525": {
@@ -334,7 +334,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5593": {
@@ -353,7 +353,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5598": {
@@ -372,7 +372,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:pgyinfo:14852": {
@@ -410,7 +410,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:pgyinfo:14858": {
@@ -428,7 +428,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:pgyinfo:14890": {
@@ -520,7 +520,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:cryptocurrencymage:23478": {
@@ -557,7 +557,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:snatch0x:4227": {
@@ -575,7 +575,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:katzenote:2223": {
@@ -593,7 +593,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:gemhive:38554": {
@@ -613,7 +613,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:gemhive:38558": {
@@ -631,7 +631,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": true
   },
   "tg:gemhive:38574": {
@@ -649,7 +649,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": true
   },
   "tg:gemhive:38575": {
@@ -668,7 +668,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:gemhive:38585": {
@@ -686,7 +686,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": true
   },
   "tg:gemhive:38590": {
@@ -705,7 +705,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:gemhive:38677": {
@@ -724,7 +724,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:gemhive:38716": {
@@ -744,7 +744,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:leedogin2:24124": {
@@ -763,7 +763,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:leedogin2:24130": {
@@ -781,7 +781,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:leedogin2:24185": {
@@ -800,7 +800,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:leedogin2:24210": {
@@ -837,7 +837,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:forevernft:10652": {
@@ -857,7 +857,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:forevernft:10662": {
@@ -876,7 +876,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:forevernft:10682": {
@@ -895,7 +895,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:forevernft:10689": {
@@ -913,7 +913,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:forevernft:10718": {
@@ -932,7 +932,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97805": {
@@ -951,7 +951,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97810": {
@@ -970,7 +970,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97811": {
@@ -989,7 +989,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97814": {
@@ -1008,7 +1008,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinboys:22187": {
@@ -1027,7 +1027,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinboys:22189": {
@@ -1046,7 +1046,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinboys:22272": {
@@ -1064,7 +1064,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinboys:22311": {
@@ -1084,7 +1084,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "x:2107129269566746736": {
@@ -1693,7 +1693,7 @@
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   },
   "tg:coinboys:22334": {
@@ -1711,7 +1711,7 @@
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-06T09:34:16Z",
+   "updated_at": "2026-10-06T09:35:27Z",
    "excluded": false
   }
  },
@@ -1757,10 +1757,10 @@
    }
   },
   {
-   "t": "2026-10-06T09:34:16Z",
+   "t": "2026-10-06T09:35:27Z",
    "s": {
     "C": 35396,
-    "A": 30992,
+    "A": 30998,
     "B": 13590
    }
   }
@@ -1867,7 +1867,7 @@
    "2026-10-06": 291
   }
  },
- "updated_at": "2026-10-06T09:34:16Z",
+ "updated_at": "2026-10-06T09:35:27Z",
  "errors": [],
  "campaign": {
   "name": "Exilist × Ondo Perps 스쿼드 캠페인",
@@ -1908,8 +1908,8 @@
    "id": "A",
    "name": "스쿼드 A",
    "color": "#E8472B",
-   "views": 30992,
-   "tg_views": 18550,
+   "views": 30998,
+   "tg_views": 18556,
    "x_views": 12442,
    "other_views": 0,
    "posts": 29,
@@ -2001,10 +2001,10 @@
    "x": "oldman_cek",
    "avatar": "avatars/airdr0p_lab.jpg?v=6289359180242466732",
    "posts": 6,
-   "tg_views": 7692,
+   "tg_views": 7697,
    "x_views": 0,
    "other_views": 0,
-   "views": 7692,
+   "views": 7697,
    "rank": 5
   },
   {
@@ -2079,10 +2079,10 @@
    "x": "AirdropKor_eth",
    "avatar": "avatars/airdrop_kor.jpg?v=6062298823537046048",
    "posts": 3,
-   "tg_views": 2673,
+   "tg_views": 2674,
    "x_views": 0,
    "other_views": 0,
-   "views": 2673,
+   "views": 2674,
    "rank": 11
   },
   {
