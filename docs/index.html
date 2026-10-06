@@ -392,7 +392,7 @@ span.av { background: var(--c, var(--muted)); }
         <div><div class="name">${esc(s.name)}</div><div class="faces">${(s.members || []).map((n) => av(kolBy[n] || { name: n }, 26, s.color)).join("")}</div><div class="members">${(s.members || []).map(esc).join(", ")}</div></div>
         <div class="total"><b title="${f(s.views)}회">${c(s.views)}</b><small>${gap}</small></div>
         <div class="split"><span>텔레그램 <strong>${c(s.tg_views)}</strong></span><span>X <strong>${c(s.x_views)}</strong></span>${s.other_views ? `<span>기타 <strong>${c(s.other_views)}</strong></span>` : ""}</div>
-        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("콘텐츠", s.posts, d.campaign?.min_posts, (n) => `${f(n)}건`)}${reqBar("조회수", s.views, d.campaign?.min_views, c)}</div>
+        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("조회수 최소 달성 조건", s.views, d.campaign?.min_views, c)}</div>
       </li>`;
     }).join("");
   }
