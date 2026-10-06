@@ -1,0 +1,285 @@
+{
+ "posts": {},
+ "history": [
+  {
+   "t": "2026-10-06T05:52:49Z",
+   "s": {
+    "A": 0,
+    "B": 0,
+    "C": 0
+   }
+  }
+ ],
+ "state": {},
+ "updated_at": "2026-10-06T05:52:49Z",
+ "errors": [],
+ "campaign": {
+  "name": "Exilist × Ondo Perps 스쿼드 캠페인",
+  "start": "2026-09-28T00:00:00+09:00",
+  "end": "2026-10-27T23:59:59+09:00",
+  "lock": null,
+  "keywords": [
+   "Ondo",
+   "Ondo Perps",
+   "온도",
+   "온도펍스",
+   "온도퍼프스"
+  ],
+  "min_posts": 50,
+  "min_views": 300000,
+  "min_volume": 10000000
+ },
+ "squads": [
+  {
+   "id": "A",
+   "name": "스쿼드 A",
+   "color": "#E8472B",
+   "views": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "posts": 0,
+   "members": [
+    "코생",
+    "CEK",
+    "문유",
+    "인생코인",
+    "에어드랍코리아"
+   ],
+   "rank": 1
+  },
+  {
+   "id": "B",
+   "name": "스쿼드 B",
+   "color": "#2B63E8",
+   "views": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "posts": 0,
+   "members": [
+    "코인위키",
+    "파구정보",
+    "크립토메이지",
+    "스내치",
+    "캇즈의 크립토 노트"
+   ],
+   "rank": 2
+  },
+  {
+   "id": "C",
+   "name": "스쿼드 C",
+   "color": "#0E9F6E",
+   "views": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "posts": 0,
+   "members": [
+    "젬하 크립토",
+    "이도진 메타버스",
+    "피린이",
+    "취미생활방",
+    "코인소년"
+   ],
+   "rank": 3
+  }
+ ],
+ "kols": [
+  {
+   "name": "코생",
+   "squad": "A",
+   "telegram": "airdropcosm",
+   "x": "auz2or",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 1
+  },
+  {
+   "name": "CEK",
+   "squad": "A",
+   "telegram": "airdr0p_lab",
+   "x": "oldman_cek",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 2
+  },
+  {
+   "name": "문유",
+   "squad": "A",
+   "telegram": "myu_moonyu",
+   "x": "moonyu_myu",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 3
+  },
+  {
+   "name": "인생코인",
+   "squad": "A",
+   "telegram": "lnsanecoin",
+   "x": "yeonwoohoiic",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 4
+  },
+  {
+   "name": "에어드랍코리아",
+   "squad": "A",
+   "telegram": "airdrop_kor",
+   "x": "AirdropKor_eth",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 5
+  },
+  {
+   "name": "코인위키",
+   "squad": "B",
+   "telegram": "CoinWiki_MMWW",
+   "x": "0xHADI",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 6
+  },
+  {
+   "name": "파구정보",
+   "squad": "B",
+   "telegram": "pgyinfo",
+   "x": "NewPaguInfo",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 7
+  },
+  {
+   "name": "크립토메이지",
+   "squad": "B",
+   "telegram": "cryptocurrencymage",
+   "x": "p2ecoin91",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 8
+  },
+  {
+   "name": "스내치",
+   "squad": "B",
+   "telegram": "snatch0x",
+   "x": "0x_snatch",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 9
+  },
+  {
+   "name": "캇즈의 크립토 노트",
+   "squad": "B",
+   "telegram": "Katzenote",
+   "x": "0xkatze",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 10
+  },
+  {
+   "name": "젬하 크립토",
+   "squad": "C",
+   "telegram": "GemHive",
+   "x": "gemhive99",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 11
+  },
+  {
+   "name": "이도진 메타버스",
+   "squad": "C",
+   "telegram": "leedogin2",
+   "x": "Lee_dogin",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 12
+  },
+  {
+   "name": "피린이",
+   "squad": "C",
+   "telegram": "forevernft",
+   "x": "Pchild_NFT",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 13
+  },
+  {
+   "name": "취미생활방",
+   "squad": "C",
+   "telegram": "enjoymyhobby",
+   "x": "Myhobby_YT",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 14
+  },
+  {
+   "name": "코인소년",
+   "squad": "C",
+   "telegram": "coinboys",
+   "x": "coinboy717",
+   "avatar": "",
+   "posts": 0,
+   "tg_views": 0,
+   "x_views": 0,
+   "other_views": 0,
+   "views": 0,
+   "rank": 15
+  }
+ ]
+}
