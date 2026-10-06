@@ -1,0 +1,509 @@
+#!/usr/bin/env python3
+"""
+KOL 스쿼드 대결 조회수 수집기
+
+- 텔레그램 채널(Telethon)과 X(공식 API v2)에서 키워드가 들어간 게시물을 찾고 조회수를 갱신합니다.
+- 결과는 docs/data.json 에 저장되고, GitHub Pages 대시보드(docs/index.html)가 이 파일을 읽습니다.
+- 점수 = 키워드 게시물 조회수 단순 합계 (텔레그램 조회수 + X 노출수)
+"""
+from __future__ import annotations
+
+import asyncio
+import csv
+import json
+import os
+import re
+import sys
+import time
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+CONFIG_PATH = ROOT / "config.json"
+DATA_PATH = ROOT / "docs" / "data.json"
+MANUAL_PATH = ROOT / "docs" / "manual_posts.csv"
+AVATAR_DIR = ROOT / "docs" / "avatars"
+X_API = "https://api.x.com/2"
+HISTORY_MAX = 3000  # 30분 간격 기준 약 2개월
+
+
+# ---------- 공통 유틸 ----------
+
+def utcnow() -> datetime:
+    return datetime.now(timezone.utc)
+
+
+def parse_dt(s: str) -> datetime:
+    dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+
+
+def iso(dt: datetime) -> str:
+    return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def log(msg: str) -> None:
+    print(f"[{iso(utcnow())}] {msg}", flush=True)
+
+
+def load_json(path: Path, default):
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return default
+
+
+def make_matcher(keywords, exclude_phrases=()):
+    """
+    대소문자 무시, 키워드가 하나라도 있으면 매칭.
+    - 영문 키워드는 앞이 영문/숫자면 매칭 안 함 (Ondo가 London, condo에 걸리지 않게).
+      뒤쪽은 열어둬서 OndoFinance, #OndoPerps, $ONDO 등은 매칭.
+    - 키워드 속 공백은 있어도 없어도 매칭 (Ondo Perps = OndoPerps).
+    - exclude_phrases에 있는 표현은 먼저 지운 뒤 매칭 (예: 체감온도).
+    """
+    pats = []
+    for k in keywords:
+        k = (k or "").strip()
+        if not k:
+            continue
+        pat = re.escape(k.lower()).replace(r"\ ", r"\s*")
+        if re.match(r"[a-z0-9]", k.lower()):
+            pat = r"(?<![a-z0-9])" + pat
+        pats.append((k, re.compile(pat)))
+    excl = [e.lower() for e in exclude_phrases if e and e.strip()]
+
+    def match(text):
+        t = (text or "").lower()
+        for e in excl:
+            t = t.replace(e, " ")
+        return [k for k, p in pats if p.search(t)]
+
+    return match
+
+
+def upsert_post(data, key, rec, now, spike_per_hour):
+    """게시물 저장/갱신 + 시간당 조회수 급증 감지."""
+    posts = data["posts"]
+    old = posts.get(key)
+    rec = dict(rec)
+    if old:
+        delta = rec.get("views", old.get("views", 0)) - old.get("views", 0)
+        rec["last_delta"] = delta
+        spike = old.get("spike", False)
+        if spike_per_hour and delta > 0 and old.get("updated_at"):
+            hours = max((now - parse_dt(old["updated_at"])).total_seconds() / 3600, 0.25)
+            if delta / hours >= spike_per_hour:
+                spike = True
+                rec["spike_at"] = iso(now)
+        rec["spike"] = spike
+    else:
+        rec["last_delta"] = 0
+        rec["spike"] = False
+        rec["first_seen"] = iso(now)
+    rec["deleted"] = False
+    rec["updated_at"] = iso(now)
+    posts[key] = {**(old or {}), **rec}
+
+
+# ---------- 텔레그램 ----------
+
+async def save_avatar(client, entity, kol, data):
+    """텔레그램 채널 프로필 사진 저장. 사진이 바뀌었을 때만 다시 받음."""
+    pid = getattr(getattr(entity, "photo", None), "photo_id", None)
+    avatars = data["state"].setdefault("tg_avatars", {})
+    if not pid:
+        avatars.pop(kol["name"], None)
+        return
+    slug = re.sub(r"[^a-z0-9_]", "", (getattr(entity, "username", None) or str(entity.id)).lower())
+    path = AVATAR_DIR / f"{slug}.jpg"
+    if avatars.get(kol["name"], {}).get("id") == pid and path.exists():
+        return
+    AVATAR_DIR.mkdir(parents=True, exist_ok=True)
+    saved = await client.download_profile_photo(entity, file=str(path), download_big=False)
+    if saved:
+        avatars[kol["name"]] = {"id": pid, "file": f"avatars/{slug}.jpg?v={pid}"}
+        log(f"텔레그램 @{slug}: 채널 사진 저장")
+
+
+async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
+    api_id = os.environ.get("TG_API_ID")
+    api_hash = os.environ.get("TG_API_HASH")
+    session = os.environ.get("TG_SESSION")
+    if not (api_id and api_hash and session):
+        log("텔레그램: 시크릿(TG_API_ID, TG_API_HASH, TG_SESSION)이 없어 건너뜁니다")
+        return
+
+    from telethon import TelegramClient
+    from telethon.sessions import StringSession
+
+    spike = cfg["campaign"].get("spike_views_per_hour", 0)
+    client = TelegramClient(StringSession(session), int(api_id), api_hash)
+    await client.connect()
+    try:
+        if not await client.is_user_authorized():
+            errors.append("텔레그램: 세션이 만료됐습니다. tools/make_tg_session.py로 새로 발급해 TG_SESSION을 교체하세요.")
+            return
+
+        for kol in cfg["kols"]:
+            channel = (kol.get("telegram") or "").strip().lstrip("@")
+            if not channel:
+                continue
+            match = matcher_for(kol)
+            try:
+                entity = await client.get_entity(channel)
+                username = getattr(entity, "username", None) or channel
+                try:
+                    await save_avatar(client, entity, kol, data)
+                except Exception as e:
+                    errors.append(f"텔레그램 {kol['name']} 채널 사진: {e}")
+                seen = set()
+                # 캠페인 시작 시각 이후 게시물을 오래된 순으로 훑음
+                async for msg in client.iter_messages(entity, offset_date=start, reverse=True):
+                    if msg.date > end:
+                        break
+                    hits = match(msg.message)
+                    if not hits:
+                        continue
+                    key = f"tg:{username.lower()}:{msg.id}"
+                    seen.add(key)
+                    upsert_post(data, key, {
+                        "platform": "telegram",
+                        "kol": kol["name"],
+                        "url": f"https://t.me/{username}/{msg.id}",
+                        "text": (msg.message or "")[:280],
+                        "created_at": iso(msg.date),
+                        "views": msg.views or 0,
+                        "forwards": msg.forwards or 0,
+                        "keywords": hits,
+                    }, now, spike)
+
+                # 이번에 안 보인 게시물 = 삭제됐거나 키워드가 빠짐 → 집계 제외
+                for key, p in data["posts"].items():
+                    if p.get("platform") == "telegram" and p.get("kol") == kol["name"] and key not in seen:
+                        p["deleted"] = True
+                log(f"텔레그램 @{username}: 키워드 게시물 {len(seen)}개")
+            except Exception as e:  # 한 채널 실패가 전체를 멈추지 않도록
+                errors.append(f"텔레그램 {kol['name']} (@{channel}): {e}")
+            await asyncio.sleep(1)
+    finally:
+        await client.disconnect()
+
+
+# ---------- X (트위터) ----------
+
+class XClient:
+    def __init__(self, token: str):
+        self.s = requests.Session()
+        self.s.headers["Authorization"] = f"Bearer {token}"
+        self.calls = 0
+
+    def get(self, path, params):
+        for _ in range(3):
+            r = self.s.get(X_API + path, params=params, timeout=30)
+            self.calls += 1
+            if r.status_code == 429:
+                reset = int(r.headers.get("x-rate-limit-reset", 0) or 0)
+                wait = (reset - time.time()) if reset else 60
+                if wait > 180:
+                    raise RuntimeError(f"요청 한도 초과, {int(wait)}초 뒤 재설정")
+                log(f"X: 요청 한도 도달, {int(max(wait, 5))}초 대기")
+                time.sleep(max(wait, 5) + 1)
+                continue
+            if r.status_code >= 400:
+                raise RuntimeError(f"HTTP {r.status_code}: {r.text[:300]}")
+            return r.json()
+        raise RuntimeError("요청 한도 초과가 계속됨")
+
+
+def tweet_text(t):
+    # 긴 글(note tweet)은 전체 본문이 note_tweet에 들어옴
+    return (t.get("note_tweet") or {}).get("text") or t.get("text") or ""
+
+
+def tweet_metrics(t):
+    m = t.get("public_metrics") or {}
+    return {
+        "views": m.get("impression_count", 0) or 0,
+        "likes": m.get("like_count", 0) or 0,
+        "reposts": (m.get("retweet_count", 0) or 0) + (m.get("quote_count", 0) or 0),
+        "replies": m.get("reply_count", 0) or 0,
+    }
+
+
+def collect_x(cfg, data, matcher_for, start, end, now, errors):
+    token = os.environ.get("X_BEARER_TOKEN")
+    if not token:
+        log("X: 시크릿(X_BEARER_TOKEN)이 없어 건너뜁니다")
+        return
+
+    camp = cfg["campaign"]
+    state = data["state"]
+
+    # API 비용 절약: x_refresh_minutes 간격으로만 호출
+    interval = camp.get("x_refresh_minutes", 60)
+    last = state.get("x_last_run")
+    if last and (now - parse_dt(last)).total_seconds() < interval * 60 - 120:
+        log(f"X: 마지막 수집 후 {interval}분이 안 지나 건너뜁니다")
+        return
+
+    spike = camp.get("spike_views_per_hour", 0)
+    x = XClient(token)
+    fields = "created_at,public_metrics,note_tweet"
+
+    handles = {}
+    for kol in cfg["kols"]:
+        h = (kol.get("x") or "").strip().lstrip("@").lower()
+        if h:
+            handles[h] = kol
+
+    # 1) 핸들 → 사용자 ID (한 번 조회 후 캐시)
+    ids = state.setdefault("x_user_ids", {})
+    missing = [h for h in handles if h not in ids]
+    try:
+        for i in range(0, len(missing), 100):
+            res = x.get("/users/by", {"usernames": ",".join(missing[i:i + 100])})
+            for u in res.get("data", []):
+                ids[u["username"].lower()] = u["id"]
+            for err in res.get("errors", []):
+                errors.append(f"X 계정 조회 실패: {err.get('value')} ({err.get('detail', '')})")
+    except Exception as e:
+        errors.append(f"X 계정 조회: {e}")
+        return
+
+    # 2) 새 게시물 찾기 (각 KOL 타임라인, 지난번 이후 것만)
+    since = state.setdefault("x_since_id", {})
+    exclude = ["retweets"] + ([] if camp.get("x_include_replies") else ["replies"])
+    fresh = set()
+    for h, kol in handles.items():
+        uid = ids.get(h)
+        if not uid:
+            continue
+        match = matcher_for(kol)
+        params = {"max_results": 100, "tweet.fields": fields, "exclude": ",".join(exclude)}
+        if since.get(h):
+            params["since_id"] = since[h]
+        else:
+            params["start_time"] = iso(start)
+        if end < now:
+            params["end_time"] = iso(end)
+        try:
+            newest, found, page = None, 0, None
+            while True:
+                if page:
+                    params["pagination_token"] = page
+                res = x.get(f"/users/{uid}/tweets", params)
+                meta = res.get("meta", {})
+                newest = newest or meta.get("newest_id")
+                for t in res.get("data", []):
+                    created = parse_dt(t["created_at"])
+                    if created < start or created > end:
+                        continue
+                    hits = match(tweet_text(t))
+                    if not hits:
+                        continue
+                    key = f"x:{t['id']}"
+                    upsert_post(data, key, {
+                        "platform": "x",
+                        "kol": kol["name"],
+                        "url": f"https://x.com/{h}/status/{t['id']}",
+                        "text": tweet_text(t)[:280],
+                        "created_at": iso(created),
+                        "keywords": hits,
+                        **tweet_metrics(t),
+                    }, now, spike)
+                    fresh.add(key)
+                    found += 1
+                page = meta.get("next_token")
+                if not page:
+                    break
+            if newest:
+                since[h] = newest
+            log(f"X @{h}: 새 키워드 게시물 {found}개")
+        except Exception as e:
+            errors.append(f"X {kol['name']} (@{h}): {e}")
+
+    # 3) 이미 찾은 게시물 조회수 갱신 (100개씩 묶어서)
+    known = [k[2:] for k, p in data["posts"].items()
+             if p.get("platform") == "x" and not p.get("deleted") and k not in fresh]
+    for i in range(0, len(known), 100):
+        batch = known[i:i + 100]
+        try:
+            res = x.get("/tweets", {"ids": ",".join(batch), "tweet.fields": fields})
+        except Exception as e:
+            errors.append(f"X 조회수 갱신: {e}")
+            break
+        for t in res.get("data", []):
+            upsert_post(data, f"x:{t['id']}", tweet_metrics(t), now, spike)
+        for err in res.get("errors", []):  # 삭제·비공개 전환된 글
+            rid = err.get("resource_id") or err.get("value")
+            if rid in batch:
+                data["posts"][f"x:{rid}"]["deleted"] = True
+
+    state["x_last_run"] = iso(now)
+    log(f"X: API 호출 {x.calls}회")
+
+
+
+# ---------- 수동 입력 게시물 (유튜브, 인스타그램 등) ----------
+
+def parse_local_dt(s):
+    """'2026-10-03' 또는 '2026-10-03 18:00' → 시간대 없으면 한국시간으로 간주."""
+    s = (s or "").strip()
+    if not s:
+        return None
+    dt = datetime.fromisoformat(s.replace("Z", "+00:00").replace(" ", "T", 1) if "T" not in s else s.replace("Z", "+00:00"))
+    return dt if dt.tzinfo else dt.replace(tzinfo=timezone(timedelta(hours=9)))
+
+
+def load_manual_posts(cfg, data, now, errors):
+    names = {k["name"] for k in cfg["kols"]}
+    seen = set()
+    if MANUAL_PATH.exists():
+        with open(MANUAL_PATH, encoding="utf-8-sig") as f:
+            lines = [l for l in f if l.strip() and not l.lstrip().startswith("#")]
+        for r in csv.DictReader(lines):
+            kol = (r.get("kol") or "").strip()
+            url = (r.get("url") or "").strip()
+            if not kol and not url:
+                continue
+            if kol not in names:
+                errors.append(f"manual_posts.csv: KOL 이름 '{kol}'이 config.json에 없습니다 ({url})")
+                continue
+            if not url:
+                errors.append(f"manual_posts.csv: {kol}의 게시물에 url이 없습니다")
+                continue
+            try:
+                created = parse_local_dt(r.get("date")) or now
+            except ValueError:
+                errors.append(f"manual_posts.csv: 날짜 형식 오류 '{r.get('date')}' ({url}) — 예: 2026-10-03")
+                created = now
+            key = "m:" + url.rstrip("/")
+            seen.add(key)
+            upsert_post(data, key, {
+                "platform": (r.get("platform") or "기타").strip(),
+                "kol": kol,
+                "url": url,
+                "text": (r.get("note") or "").strip()[:280],
+                "created_at": iso(created),
+                "views": int(re.sub(r"[^0-9]", "", r.get("views") or "") or 0),
+                "keywords": [],
+                "manual": True,
+            }, now, 0)
+    # 파일에서 지운 줄은 집계에서도 삭제
+    for key in [k for k in data["posts"] if k.startswith("m:") and k not in seen]:
+        del data["posts"][key]
+    if seen:
+        log(f"수동 입력 게시물 {len(seen)}개")
+
+# ---------- 집계 ----------
+
+def aggregate(cfg, data):
+    kols = {}
+    for k in cfg["kols"]:
+        kols[k["name"]] = {
+            "name": k["name"], "squad": k["squad"],
+            "telegram": k.get("telegram", ""), "x": k.get("x", ""),
+            "avatar": data["state"].get("tg_avatars", {}).get(k["name"], {}).get("file", ""),
+            "posts": 0, "tg_views": 0, "x_views": 0, "other_views": 0, "views": 0,
+        }
+    for p in data["posts"].values():
+        k = kols.get(p.get("kol"))
+        if not k or p.get("deleted") or p.get("excluded"):
+            continue
+        v = p.get("views", 0)
+        k["posts"] += 1
+        k["views"] += v
+        plat = p.get("platform")
+        k["tg_views" if plat == "telegram" else "x_views" if plat == "x" else "other_views"] += v
+
+    kol_list = sorted(kols.values(), key=lambda k: -k["views"])
+    for i, k in enumerate(kol_list):
+        k["rank"] = i + 1
+
+    squads = []
+    for s in cfg["squads"]:
+        members = [k for k in kol_list if k["squad"] == s["id"]]
+        squads.append({
+            **s,
+            "views": sum(m["views"] for m in members),
+            "tg_views": sum(m["tg_views"] for m in members),
+            "x_views": sum(m["x_views"] for m in members),
+            "other_views": sum(m["other_views"] for m in members),
+            "posts": sum(m["posts"] for m in members),
+            "members": [m["name"] for m in members],
+        })
+    squads.sort(key=lambda s: -s["views"])
+    for i, s in enumerate(squads):
+        s["rank"] = i + 1
+    return kol_list, squads
+
+
+def main() -> int:
+    cfg = load_json(CONFIG_PATH, None)
+    if not cfg:
+        print("config.json이 없습니다", file=sys.stderr)
+        return 1
+
+    camp = cfg["campaign"]
+    start, end = parse_dt(camp["start"]), parse_dt(camp["end"])
+    lock = parse_dt(camp.get("lock") or camp["end"])
+    now = utcnow()
+
+    data = load_json(DATA_PATH, {})
+    data.setdefault("posts", {})
+    data.setdefault("history", [])
+    data.setdefault("state", {})
+    errors = []
+
+    if now > lock and data.get("final"):
+        log("최종 확정된 캠페인입니다. 더 이상 갱신하지 않습니다.")
+        return 0
+
+    collected = False
+    if now < start:
+        log("캠페인 시작 전입니다. 수집하지 않습니다.")
+    elif now > lock:
+        log("확정 시각이 지났습니다. 순위를 최종 확정합니다.")
+        data["final"] = True
+    else:
+        def matcher_for(kol):
+            # 공통 키워드 + 해당 KOL의 초대코드
+            extra = [kol["invite_code"]] if kol.get("invite_code") else []
+            return make_matcher(camp["keywords"] + extra, camp.get("exclude_phrases", []))
+
+        asyncio.run(collect_telegram(cfg, data, matcher_for, start, end, now, errors))
+        collect_x(cfg, data, matcher_for, start, end, now, errors)
+        load_manual_posts(cfg, data, now, errors)
+        collected = True
+
+    # 운영자가 수동으로 제외한 게시물 (config의 excluded_posts에 URL 입력)
+    excluded = {u.strip().rstrip("/") for u in camp.get("excluded_posts", []) if u.strip()}
+    for p in data["posts"].values():
+        p["excluded"] = p.get("url", "").rstrip("/") in excluded
+
+    kols, squads = aggregate(cfg, data)
+
+    if collected:
+        data["history"].append({"t": iso(now), "s": {s["id"]: s["views"] for s in squads}})
+        data["history"] = data["history"][-HISTORY_MAX:]
+        data["updated_at"] = iso(now)
+        data["errors"] = errors
+
+    data["campaign"] = {k: camp.get(k) for k in ("name", "start", "end", "lock", "keywords", "min_posts", "min_views", "min_volume")}
+    data["squads"] = squads
+    data["kols"] = kols
+
+    DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=1)
+
+    for e in errors:
+        print(f"::warning::{e}", flush=True)  # GitHub Actions 경고로 표시
+    log("완료: " + ", ".join(f"{s['name']} {s['views']:,}" for s in squads))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

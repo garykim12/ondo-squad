@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exilist × Ondo Perps 스쿼드 캠페인</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #E7EAF0;
+  --surface: #F6F7FA;
+  --ink: #1B2130;
+  --muted: #5A6375;
+  --line: #C9CFDA;
+  --track: #D6DBE4;
+  --warn: #B4540A;
+  --warn-bg: #FBE9D7;
+  --num: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --text: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #151922; --surface: #1D2230; --ink: #EEF1F6; --muted: #9AA3B5;
+    --line: #2E3546; --track: #272D3B; --warn: #F2A35E; --warn-bg: #3A2A1C;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #151922; --surface: #1D2230; --ink: #EEF1F6; --muted: #9AA3B5;
+  --line: #2E3546; --track: #272D3B; --warn: #F2A35E; --warn-bg: #3A2A1C;
+}
+*, *::before, *::after { box-sizing: inherit; }
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.55 var(--text); -webkit-font-smoothing: antialiased; word-break: keep-all; overflow-wrap: break-word;
+}
+.wrap { max-width: 920px; margin: 0 auto; padding: 28px 18px 48px; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: 4px; }
+.num { font-family: var(--num); font-variant-numeric: tabular-nums; font-stretch: 72%; }
+
+/* 헤더 */
+.top h1 {
+  font-family: var(--num); font-stretch: 112%; font-weight: 800;
+  font-size: clamp(26px, 6vw, 40px); line-height: 1.05; margin: 0 0 12px; letter-spacing: -0.01em;
+}
+.meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; color: var(--muted); font-size: 14px; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--ink); }
+.pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--dot, var(--muted)); }
+.pill.live { --dot: #0E9F6E; }
+.kw { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.kw span { font-size: 13px; padding: 2px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+
+/* 배틀 */
+.battle { margin-top: 0; }
+.lead { font-size: clamp(18px, 4.4vw, 24px); font-weight: 700; line-height: 1.35; margin: 0 0 14px; max-width: 34ch; }
+.bar { display: flex; height: 64px; border-radius: 10px; overflow: hidden; background: var(--track); }
+.bar > div {
+  position: relative; display: flex; align-items: flex-end; padding: 0 10px 8px;
+  color: #fff; font-family: var(--num); font-weight: 800; font-stretch: 80%; font-size: 20px;
+  width: 0; transition: width .9s cubic-bezier(.2,.8,.2,1); min-width: 0; white-space: nowrap;
+}
+.bar > div + div { border-left: 2px solid var(--bg); }
+.squads { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 2px; }
+.squad {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 4px 12px; align-items: center;
+  background: var(--surface); padding: 14px 16px; border-left: 6px solid var(--c);
+}
+.squad:first-child { border-radius: 10px 10px 0 0; }
+.squad:last-child { border-radius: 0 0 10px 10px; }
+.squad .rank { font-family: var(--num); font-weight: 900; font-stretch: 70%; font-size: 34px; line-height: 1; color: var(--c); }
+.squad .name { font-weight: 700; font-size: 17px; }
+.squad .members { color: var(--muted); font-size: 13px; line-height: 1.4; }
+.squad .total { text-align: right; }
+.squad .total b { display: block; font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: clamp(28px, 7vw, 40px); line-height: 1; }
+.squad .total small { color: var(--muted); font-size: 12px; }
+.squad .split { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: 13px; }
+.squad .split strong { color: var(--ink); font-weight: 500; }
+
+/* 섹션 공통 */
+section.block { margin-top: 44px; }
+.block-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.block-head h2 { font-size: 19px; margin: 0; }
+.seg { display: inline-flex; background: var(--track); border-radius: 8px; padding: 3px; gap: 2px; overflow-x: auto; max-width: 100%; }
+.seg button {
+  font: 500 13px var(--text); color: var(--muted); background: none; border: 0; border-radius: 6px;
+  padding: 5px 11px; cursor: pointer; white-space: nowrap;
+}
+.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 700; }
+
+/* 차트 */
+.chart { background: var(--surface); border-radius: 10px; padding: 12px 8px 6px; overflow-x: auto; }
+.chart svg { display: block; width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 6px 10px 4px; font-size: 13px; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 14px; height: 3px; border-radius: 2px; background: var(--c); vertical-align: middle; margin-right: 6px; }
+
+/* KOL 순위 */
+.kols { list-style: none; padding: 0; margin: 0; background: var(--surface); border-radius: 10px; }
+.kol { display: grid; grid-template-columns: 34px 1fr auto; gap: 2px 12px; padding: 12px 14px; align-items: center; }
+.kol + .kol { border-top: 1px solid var(--line); }
+.kol .r { font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: 22px; color: var(--muted); text-align: center; }
+.kol.top .r { color: var(--ink); }
+.kol .who { min-width: 0; }
+.kol .who b { font-weight: 700; }
+.kol .tag { display: inline-block; font-size: 11px; font-weight: 700; color: #fff; background: var(--c); border-radius: 4px; padding: 0 6px; margin-left: 6px; vertical-align: 2px; }
+.kol .handles { display: flex; flex-wrap: wrap; gap: 0 10px; font-size: 12px; color: var(--muted); }
+.kol .handles a { text-decoration: none; }
+.kol .handles a:hover { text-decoration: underline; }
+.kol .v { text-align: right; }
+.kol .v b { font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: 22px; }
+.kol .v small { display: block; font-size: 12px; color: var(--muted); }
+.kol .mix { grid-column: 2 / -1; display: flex; height: 4px; border-radius: 2px; overflow: hidden; background: var(--track); margin-top: 6px; }
+.kol .mix i { display: block; height: 100%; }
+.kol .mix .tg { background: var(--c); }
+.kol .mix .x { background: var(--c); opacity: .45; }
+
+/* 게시물 */
+.posts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.post a { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 12px 14px; background: var(--surface); border-radius: 10px; text-decoration: none; border-left: 4px solid var(--c); }
+.post a:hover { outline: 1px solid var(--line); }
+.post .head { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 13px; color: var(--muted); }
+.post .head b { color: var(--ink); }
+.plat { font-size: 11px; font-weight: 700; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; color: var(--ink); }
+.spike { font-size: 11px; font-weight: 700; color: var(--warn); background: var(--warn-bg); border-radius: 4px; padding: 1px 6px; }
+.post p { grid-column: 1; margin: 2px 0 0; font-size: 14px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.post .pv { grid-row: 1 / span 2; grid-column: 2; text-align: right; align-self: center; }
+.post .pv b { font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: 22px; display: block; line-height: 1; }
+.post .pv small { font-size: 12px; color: var(--muted); }
+.more { display: block; margin: 12px auto 0; font: 500 14px var(--text); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 18px; cursor: pointer; }
+
+/* 상태/푸터 */
+.empty { background: var(--surface); border-radius: 10px; padding: 20px; color: var(--muted); }
+.empty strong { color: var(--ink); display: block; margin-bottom: 4px; }
+.alerts { margin-top: 24px; background: var(--warn-bg); color: var(--warn); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+.alerts ul { margin: 6px 0 0; padding-left: 18px; }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; max-width: 70ch; }
+footer p { margin: 0 0 6px; }
+
+
+/* 탭 */
+.tabs {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  display: flex; gap: 4px; overflow-x: auto; margin: 24px -18px 0; padding: 0 18px;
+  border-bottom: 1px solid var(--line); scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tabs a {
+  flex: none; padding: 12px 10px 10px; text-decoration: none; color: var(--muted);
+  font-weight: 500; font-size: 15px; border-bottom: 3px solid transparent; margin-bottom: -1px; white-space: nowrap;
+}
+.tabs a[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+.panel[hidden] { display: none; }
+.panel > :first-child { margin-top: 28px; }
+
+/* 거래량·레퍼럴 */
+.asof { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+.squad .other { color: var(--muted); font-size: 12px; display: block; }
+.note { margin-top: 20px; color: var(--muted); font-size: 13px; max-width: 70ch; }
+
+/* 프로필 사진 */
+.av { flex: none; width: var(--s, 36px); height: var(--s, 36px); border-radius: 50%; object-fit: cover; background: var(--track); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: calc(var(--s, 36px) * .42); color: #fff; overflow: hidden; }
+span.av { background: var(--c, var(--muted)); }
+.faces { display: flex; margin: 4px 0 2px; }
+.faces .av { --s: 26px; border: 2px solid var(--surface); margin-left: -6px; }
+.faces .av:first-child { margin-left: 0; }
+.kol .who { display: flex; align-items: center; gap: 10px; }
+.kol .who > div { min-width: 0; }
+.post .head .av { --s: 20px; }
+
+/* 최소 조건 진행도 */
+.req { grid-column: 2 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px 14px; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.req .lbl { display: flex; justify-content: space-between; gap: 6px; }
+.req .lbl strong { color: var(--ink); font-weight: 500; }
+.req .track { height: 5px; border-radius: 3px; background: var(--track); overflow: hidden; margin-top: 3px; }
+.req .track i { display: block; height: 100%; background: var(--c); }
+.req .done .lbl span::after { content: " ✓"; color: var(--c); font-weight: 700; }
+.req .lbl { white-space: nowrap; }
+
+/* 문서(가이드·약관) */
+.doc { background: var(--surface); border-radius: 10px; padding: 24px 22px 28px; max-width: 72ch; }
+.doc h1 { font-size: 22px; line-height: 1.3; margin: 0 0 18px; }
+.doc h2 { font-size: 17px; margin: 28px 0 8px; }
+.doc h3 { font-size: 15px; margin: 20px 0 6px; }
+.doc p { margin: 0 0 12px; }
+.doc ul, .doc ol { margin: 0 0 12px; padding-left: 22px; }
+.doc ul.plain { list-style: none; padding-left: 8px; }
+.doc li { margin: 2px 0; }
+.doc li.sub { margin-left: 18px; list-style: circle; }
+.doc a { text-decoration: underline; }
+.doc hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
+
+@media (max-width: 520px) {
+  .tabs { gap: 0; }
+  .tabs a { padding: 12px 7px 10px; font-size: 14px; }
+  .squad { grid-template-columns: 34px 1fr auto; padding: 12px; }
+  .squad .rank { font-size: 28px; }
+  .bar { height: 52px; }
+  .bar > div { font-size: 16px; padding: 0 6px 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar > div { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1 id="title">Exilist × Ondo Perps 스쿼드 캠페인</h1>
+    <div class="meta">
+      <span class="pill" id="status">불러오는 중</span>
+      <span id="countdown"></span>
+      <span id="updated"></span>
+    </div>
+    <div class="kw" id="keywords"></div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="대시보드 메뉴">
+    <a href="#views" role="tab" data-tab="views" aria-selected="true">조회수</a>
+    <a href="#trading" role="tab" data-tab="trading" aria-selected="false">거래량</a>
+    <a href="#rules" role="tab" data-tab="rules" aria-selected="false">캠페인 룰</a>
+    <a href="#content" role="tab" data-tab="content" aria-selected="false">콘텐츠 가이드</a>
+    <a href="#terms" role="tab" data-tab="terms" aria-selected="false">이용약관</a>
+  </nav>
+
+  <main>
+  <div class="panel" id="panel-views" role="tabpanel">
+  <div id="views-body">
+    <section class="battle" aria-labelledby="lead">
+      <p class="lead" id="lead"></p>
+      <div class="bar" id="bar" role="img" aria-label="스쿼드별 조회수 점유율"></div>
+      <ol class="squads" id="squads"></ol>
+    </section>
+
+    <section class="block" aria-labelledby="h-chart">
+      <div class="block-head"><h2 id="h-chart">스쿼드 조회수 추이</h2></div>
+      <div class="chart" id="chart"></div>
+    </section>
+
+    <section class="block" aria-labelledby="h-kols">
+      <div class="block-head">
+        <h2 id="h-kols">KOL 순위</h2>
+        <div class="seg" id="kol-filter" role="group" aria-label="스쿼드 필터"></div>
+      </div>
+      <ol class="kols" id="kols"></ol>
+    </section>
+
+    <section class="block" aria-labelledby="h-posts">
+      <div class="block-head">
+        <h2 id="h-posts">키워드 게시물</h2>
+        <div class="seg" id="post-sort" role="group" aria-label="정렬">
+          <button data-sort="views" aria-pressed="true">조회수순</button>
+          <button data-sort="recent" aria-pressed="false">최신순</button>
+        </div>
+      </div>
+      <ul class="posts" id="posts"></ul>
+      <button class="more" id="more" hidden>더 보기</button>
+    </section>
+
+    <div class="alerts" id="alerts" hidden></div>
+    <footer id="rules"></footer>
+  </div>
+  </div>
+
+  <div class="panel" id="panel-trading" role="tabpanel" hidden>
+    <section class="battle">
+      <div class="block-head">
+        <p class="lead" id="t-lead" style="margin:0"></p>
+        <div class="seg" id="t-metric" role="group" aria-label="지표">
+          <button data-m="volume" aria-pressed="true">거래량</button>
+          <button data-m="referrals" aria-pressed="false">레퍼럴 모객 수</button>
+        </div>
+      </div>
+      <p class="asof" id="t-asof"></p>
+      <ol class="squads" id="t-squads"></ol>
+    </section>
+    <section class="block">
+      <div class="block-head"><h2>KOL 순위</h2></div>
+      <ol class="kols" id="t-kols"></ol>
+    </section>
+    <div class="alerts" id="t-alerts" hidden></div>
+    <p class="note">거래량은 KOL 본인 거래량과 레퍼럴 유저 거래량을 합산합니다. 거래량과 레퍼럴 모객 수는 운영진이 Ondo Perps 데이터를 받아 직접 반영하는 수치입니다. 셀프 레퍼럴과 워시 트레이딩으로 만든 수치는 확인되는 대로 제외됩니다.</p>
+  </div>
+
+  <div class="panel" id="panel-rules" role="tabpanel" hidden>
+    <article class="doc" id="rules-doc"></article>
+  </div>
+
+  <div class="panel" id="panel-content" role="tabpanel" hidden>
+    <article class="doc" id="content-doc"></article>
+  </div>
+
+  <div class="panel" id="panel-terms" role="tabpanel" hidden>
+    <article class="doc" id="terms-doc"></article>
+  </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  const compact = new Intl.NumberFormat("ko-KR", { notation: "compact", maximumFractionDigits: 1 });
+  const full = new Intl.NumberFormat("ko-KR");
+  const rel = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
+  const dateFmt = new Intl.DateTimeFormat("ko-KR", { month: "numeric", day: "numeric", hour: "2-digit", minute: "2-digit" });
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const c = (n) => compact.format(n || 0);
+  const f = (n) => full.format(n || 0);
+
+  let DATA = null;
+  let kolFilter = "all";
+  let postSort = "views";
+  let postLimit = 20;
+
+  function ago(iso) {
+    const s = (new Date(iso) - Date.now()) / 1000;
+    const a = Math.abs(s);
+    if (a < 3600) return rel.format(Math.round(s / 60), "minute");
+    if (a < 86400) return rel.format(Math.round(s / 3600), "hour");
+    return rel.format(Math.round(s / 86400), "day");
+  }
+  function left(ms) {
+    if (ms <= 0) return "";
+    const d = Math.floor(ms / 86400000), h = Math.floor(ms / 3600000) % 24, m = Math.floor(ms / 60000) % 60;
+    return d > 0 ? `${d}일 ${h}시간` : h > 0 ? `${h}시간 ${m}분` : `${m}분`;
+  }
+
+  function renderHeader(d) {
+    const camp = d.campaign || {};
+    $("title").textContent = camp.name || "KOL 스쿼드 배틀";
+    document.title = camp.name || document.title;
+    const now = Date.now(), start = +new Date(camp.start), end = +new Date(camp.end), lock = +new Date(camp.lock || camp.end);
+    const st = $("status");
+    st.className = "pill";
+    let cd = "";
+    if (d.final || now > lock) { st.textContent = "최종 확정"; }
+    else if (now < start) { st.textContent = "시작 전"; cd = `시작까지 ${left(start - now)}`; }
+    else if (now <= end) { st.textContent = "진행 중"; st.classList.add("live"); cd = `게시 마감까지 ${left(end - now)}`; }
+    else { st.textContent = "게시 마감, 조회수 집계 중"; cd = `확정까지 ${left(lock - now)}`; }
+    $("countdown").textContent = cd;
+    $("updated").textContent = d.updated_at ? `${ago(d.updated_at)} 업데이트` : "";
+    $("updated").title = d.updated_at ? new Date(d.updated_at).toLocaleString("ko-KR") : "";
+    $("keywords").innerHTML = (camp.keywords || []).map((k) => `<span>${esc(k)}</span>`).join("");
+  }
+
+  function av(k, size, color) {
+    const st = `--s:${size}px${color ? `;--c:${esc(color)}` : ""}`;
+    const initial = esc(Array.from(String(k?.name || "?"))[0] || "?");
+    if (k && k.avatar) return `<img class="av" style="${st}" src="${esc(k.avatar)}" alt="" loading="lazy" onerror="this.outerHTML='<span class=&quot;av&quot; style=&quot;${st}&quot;>${initial}</span>'">`;
+    return `<span class="av" style="${st}" aria-hidden="true">${initial}</span>`;
+  }
+
+  function reqBar(label, cur, min, fmt) {
+    if (!min) return "";
+    const pct = Math.min(100, (cur / min) * 100);
+    return `<div class="${cur >= min ? "done" : ""}"><div class="lbl"><span>${esc(label)}</span><strong>${esc(fmt(cur))} / ${esc(fmt(min))}</strong></div><div class="track"><i style="width:${pct}%"></i></div></div>`;
+  }
+
+  function renderBattle(d) {
+    const sq = d.squads || [];
+    const total = sq.reduce((a, s) => a + s.views, 0);
+    const lead = $("lead");
+    if (!total) lead.textContent = "아직 집계된 조회수가 없습니다. 키워드 게시물이 올라오면 여기서 순위가 시작됩니다.";
+    else if (sq.length > 1) {
+      const gap = sq[0].views - sq[1].views;
+      lead.textContent = gap === 0 ? `${sq[0].name}와 ${sq[1].name}가 동점입니다.` : `${sq[0].name}가 ${sq[1].name}보다 ${f(gap)}회 앞서고 있습니다.`;
+    } else lead.textContent = `${sq[0].name} ${f(sq[0].views)}회`;
+
+    const bar = $("bar");
+    const shares = sq.map((s) => (total ? (s.views / total) * 100 : 100 / (sq.length || 1)));
+    if (bar.children.length !== sq.length || [...bar.children].some((el, i) => el.dataset.id !== sq[i].id)) {
+      bar.innerHTML = sq.map((s) => `<div data-id="${esc(s.id)}" style="background:${esc(s.color)}"></div>`).join("");
+    }
+    requestAnimationFrame(() => {
+      [...bar.children].forEach((el, i) => {
+        el.style.width = shares[i] + "%";
+        el.textContent = total && shares[i] >= 9 ? Math.round(shares[i]) + "%" : "";
+        el.title = `${sq[i].name} ${f(sq[i].views)}회 (${shares[i].toFixed(1)}%)`;
+      });
+    });
+
+    const kolBy = Object.fromEntries((d.kols || []).map((k) => [k.name, k]));
+    $("squads").innerHTML = sq.map((s, i) => {
+      const gap = i === 0 ? (sq[1] ? `2위와 ${c(s.views - sq[1].views)} 차이` : "") : `1위와 ${c(sq[0].views - s.views)} 차이`;
+      return `<li class="squad" style="--c:${esc(s.color)}">
+        <span class="rank">${s.rank}</span>
+        <div><div class="name">${esc(s.name)}</div><div class="faces">${(s.members || []).map((n) => av(kolBy[n] || { name: n }, 26, s.color)).join("")}</div><div class="members">${(s.members || []).map(esc).join(", ")}</div></div>
+        <div class="total"><b title="${f(s.views)}회">${c(s.views)}</b><small>${gap}</small></div>
+        <div class="split"><span>텔레그램 <strong>${c(s.tg_views)}</strong></span><span>X <strong>${c(s.x_views)}</strong></span>${s.other_views ? `<span>기타 <strong>${c(s.other_views)}</strong></span>` : ""}</div>
+        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("콘텐츠", s.posts, d.campaign?.min_posts, (n) => `${f(n)}건`)}${reqBar("조회수", s.views, d.campaign?.min_views, c)}</div>
+      </li>`;
+    }).join("");
+  }
+
+  function renderChart(d) {
+    const box = $("chart");
+    let H = (d.history || []).filter((h) => h && h.t);
+    const sq = d.squads || [];
+    if (H.length < 2) { box.innerHTML = `<div class="empty">수집이 두 번 이상 돌면 추이 그래프가 나타납니다.</div>`; return; }
+    const step = Math.ceil(H.length / 240);
+    if (step > 1) H = H.filter((_, i) => i % step === 0 || i === H.length - 1);
+    const W = Math.max(300, Math.min(880, (box.clientWidth || 640) - 16)), Ht = W < 480 ? 220 : 260, L = 58, R = 62, T = 14, B = 26;
+    const t0 = +new Date(H[0].t), t1 = +new Date(H[H.length - 1].t);
+    const max = Math.max(1, ...H.flatMap((h) => sq.map((s) => h.s[s.id] || 0)));
+    const nice = (() => { const p = Math.pow(10, Math.floor(Math.log10(max))); const m = max / p; return [1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10].find((n) => n >= m) * p; })();
+    const x = (t) => L + ((t - t0) / Math.max(1, t1 - t0)) * (W - L - R);
+    const y = (v) => T + (1 - v / nice) * (Ht - T - B);
+    let g = "";
+    for (let i = 0; i <= 4; i++) {
+      const v = (nice / 4) * i, yy = y(v);
+      g += `<line x1="${L}" x2="${W - R}" y1="${yy}" y2="${yy}" stroke="var(--line)" stroke-width="1"/>`;
+      g += `<text x="${L - 8}" y="${yy + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${c(v)}</text>`;
+    }
+    g += `<text x="${L}" y="${Ht - 6}" font-size="11" fill="var(--muted)">${esc(dateFmt.format(new Date(t0)))}</text>`;
+    g += `<text x="${W - R}" y="${Ht - 6}" text-anchor="end" font-size="11" fill="var(--muted)">${esc(dateFmt.format(new Date(t1)))}</text>`;
+    // 끝 라벨이 겹치지 않도록 정렬
+    const ends = sq.map((s) => ({ s, v: H[H.length - 1].s[s.id] || 0 })).sort((a, b) => b.v - a.v);
+    let lastY = -Infinity;
+    ends.forEach((e) => { e.ly = Math.max(y(e.v) + 4, lastY + 14); lastY = e.ly; });
+    sq.slice().reverse().forEach((s) => {
+      const pts = H.map((h) => `${x(+new Date(h.t)).toFixed(1)},${y(h.s[s.id] || 0).toFixed(1)}`).join(" ");
+      g += `<polyline points="${pts}" fill="none" stroke="${esc(s.color)}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    });
+    ends.forEach((e) => {
+      g += `<circle cx="${x(t1)}" cy="${y(e.v)}" r="3.5" fill="${esc(e.s.color)}"/>`;
+      g += `<text x="${x(t1) + 8}" y="${e.ly}" font-size="12" font-weight="700" fill="var(--ink)" style="font-family:var(--num);font-stretch:80%">${c(e.v)}</text>`;
+    });
+    box.innerHTML = `<svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="시간에 따른 스쿼드별 누적 조회수">${g}</svg>
+      <div class="legend">${sq.map((s) => `<span style="--c:${esc(s.color)}">${esc(s.name)}</span>`).join("")}</div>`;
+  }
+
+  function renderKols(d) {
+    const sqMap = Object.fromEntries((d.squads || []).map((s) => [s.id, s]));
+    const filt = $("kol-filter");
+    const opts = [{ id: "all", name: "전체" }, ...(d.squads || []).slice().sort((a, b) => String(a.id).localeCompare(b.id))];
+    filt.innerHTML = opts.map((o) => `<button data-f="${esc(o.id)}" aria-pressed="${o.id === kolFilter}">${esc(o.name)}</button>`).join("");
+    const list = (d.kols || []).filter((k) => kolFilter === "all" || k.squad === kolFilter);
+    $("kols").innerHTML = list.map((k) => {
+      const s = sqMap[k.squad] || { color: "var(--muted)", name: k.squad };
+      const tgp = k.views ? (k.tg_views / k.views) * 100 : 0;
+      const tg = k.telegram ? `<a href="https://t.me/${encodeURIComponent(k.telegram)}" target="_blank" rel="noopener">텔레그램 @${esc(k.telegram)}</a>` : "";
+      const xx = k.x ? `<a href="https://x.com/${encodeURIComponent(k.x)}" target="_blank" rel="noopener">X @${esc(k.x)}</a>` : "";
+      return `<li class="kol ${k.rank <= 3 ? "top" : ""}" style="--c:${esc(s.color)}">
+        <span class="r">${k.rank}</span>
+        <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${tg}${xx}</div></div></div>
+        <div class="v"><b title="${f(k.views)}회">${c(k.views)}</b><small>게시물 ${f(k.posts)}개</small></div>
+        <div class="mix" title="텔레그램 ${f(k.tg_views)} / X ${f(k.x_views)}"><i class="tg" style="width:${tgp}%"></i><i class="x" style="width:${k.views ? 100 - tgp : 0}%"></i></div>
+      </li>`;
+    }).join("") || `<li class="empty">이 스쿼드에 등록된 KOL이 없습니다.</li>`;
+  }
+
+  function renderPosts(d) {
+    const sqMap = Object.fromEntries((d.squads || []).map((s) => [s.id, s]));
+    const kolSquad = Object.fromEntries((d.kols || []).map((k) => [k.name, k.squad]));
+    const kolBy = Object.fromEntries((d.kols || []).map((k) => [k.name, k]));
+    let posts = Object.values(d.posts || {}).filter((p) => !p.deleted && !p.excluded && kolSquad[p.kol]);
+    posts.sort(postSort === "views" ? (a, b) => b.views - a.views : (a, b) => new Date(b.created_at) - new Date(a.created_at));
+    const shown = posts.slice(0, postLimit);
+    $("posts").innerHTML = shown.map((p) => {
+      const s = sqMap[kolSquad[p.kol]] || { color: "var(--muted)" };
+      return `<li class="post" style="--c:${esc(s.color)}"><a href="${esc(p.url)}" target="_blank" rel="noopener">
+        <div class="head"><span class="plat">${p.platform === "telegram" ? "텔레그램" : p.platform === "x" ? "X" : esc(p.platform || "기타")}</span>${av(kolBy[p.kol], 20, s.color)}<b>${esc(p.kol)}</b><span>${esc(ago(p.created_at))}</span>${(p.keywords || []).length ? `<span>${(p.keywords || []).map(esc).join(", ")}</span>` : ""}${p.spike ? `<span class="spike" title="짧은 시간에 조회수가 크게 늘었습니다. 확인이 필요할 수 있어요.">급증 감지</span>` : ""}</div>
+        <p>${esc(p.text)}</p>
+        <div class="pv"><b title="${f(p.views)}회">${c(p.views)}</b><small>조회</small></div>
+      </a></li>`;
+    }).join("") || `<li class="empty"><strong>아직 키워드 게시물이 없습니다</strong>KOL이 키워드를 넣어 글을 올리면 다음 수집 때 여기에 나타납니다.</li>`;
+    const more = $("more");
+    more.hidden = posts.length <= postLimit;
+    more.textContent = `더 보기 (${f(posts.length - postLimit)}개 남음)`;
+  }
+
+  function renderFooter(d) {
+    const camp = d.campaign || {};
+    const fmt = (s) => (s ? new Date(s).toLocaleString("ko-KR", { dateStyle: "medium", timeStyle: "short" }) : "-");
+    $("rules").innerHTML = `
+      <p>점수는 키워드(${(camp.keywords || []).map(esc).join(", ")}) 또는 본인 초대코드가 들어간 게시물의 조회수 합계입니다. 텔레그램 채널 조회수와 X 노출수는 자동으로 수집하고, 유튜브·인스타그램 등 다른 플랫폼은 운영진이 확인해 반영합니다.</p>
+      <p>${!camp.lock || camp.lock === camp.end
+        ? `${fmt(camp.start)}부터 ${fmt(camp.end)}까지 올린 게시물이 대상이며, 이 시각에 조회수 집계도 함께 마감됩니다.`
+        : `${fmt(camp.start)}부터 ${fmt(camp.end)}까지 올린 게시물이 대상이며, 조회수는 ${fmt(camp.lock)}에 최종 확정됩니다.`}</p>
+      <p>삭제됐거나 키워드가 빠진 게시물, 운영진이 캠페인과 무관하다고 판단한 게시물은 집계에서 제외됩니다.</p>`;
+    const errs = d.errors || [];
+    $("alerts").hidden = !errs.length;
+    $("alerts").innerHTML = errs.length ? `<strong>마지막 수집에서 일부 데이터를 가져오지 못했습니다</strong><ul>${errs.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>` : "";
+  }
+
+  function render(d) {
+    DATA = d;
+    renderHeader(d); renderBattle(d); if (!$("panel-views").hidden) renderChart(d); renderKols(d); renderPosts(d); renderFooter(d); renderTrading();
+  }
+
+  $("kol-filter").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b || !DATA) return;
+    kolFilter = b.dataset.f; renderKols(DATA);
+  });
+  $("post-sort").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b || !DATA) return;
+    postSort = b.dataset.sort; postLimit = 20;
+    [...e.currentTarget.children].forEach((x) => x.setAttribute("aria-pressed", x === b));
+    renderPosts(DATA);
+  });
+  $("more").addEventListener("click", () => { postLimit += 20; renderPosts(DATA); });
+
+  async function load() {
+    try {
+      let d = window.__DATA__;
+      if (!d) {
+        const r = await fetch("data.json?t=" + Date.now(), { cache: "no-store" });
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        d = await r.json();
+      }
+      render(d);
+    } catch (err) {
+      if (DATA) return; // 이미 표시 중이면 이전 데이터 유지
+      $("status").textContent = "데이터 없음";
+      $("views-body").innerHTML = `<div class="empty"><strong>아직 수집된 데이터가 없습니다</strong>GitHub 저장소의 Actions 탭에서 collect-views를 한 번 실행하면 docs/data.json이 만들어지고 이 화면에 순위가 나타납니다.</div>`;
+    }
+  }
+
+  // ---------- 파일 읽기 (미리보기에서는 내장 데이터 사용) ----------
+  async function getText(name) {
+    if (window.__FILES__ && name in window.__FILES__) return { text: window.__FILES__[name], modified: null };
+    const r = await fetch(name + "?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) throw new Error("HTTP " + r.status);
+    return { text: await r.text(), modified: r.headers.get("last-modified") };
+  }
+
+  // ---------- 간단한 마크다운 렌더러 (제목, 문단, 목록, 굵게, 링크) ----------
+  function inline(t) {
+    const links = [];
+    let h = esc(t).replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, (_, txt, url) => { links.push(`<a href="${url}" target="_blank" rel="noopener">${txt}</a>`); return `\u0000${links.length - 1}\u0000`; });
+    h = h.replace(/(^|[\s(])(https?:\/\/[^\s<)]+)/g, '$1<a href="$2" target="_blank" rel="noopener">$2</a>');
+    h = h.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    return h.replace(/\u0000(\d+)\u0000/g, (_, i) => links[+i]);
+  }
+  function md(src) {
+    const lines = String(src || "").replace(/\r/g, "").split("\n");
+    let out = "", para = [], list = null;
+    const flushP = () => { if (para.length) { out += `<p>${para.map(inline).join("<br>")}</p>`; para = []; } };
+    const flushL = () => { if (list) { out += `<${list.tag}${list.cls ? ` class="${list.cls}"` : ""}>${list.items.map((i) => `<li${i.sub ? ' class="sub"' : ""}>${inline(i.t)}</li>`).join("")}</${list.tag}>`; list = null; } };
+    for (const raw of lines) {
+      const line = raw.trimEnd();
+      let m;
+      if (!line.trim()) { flushP(); flushL(); continue; }
+      if ((m = line.match(/^(#{1,3})\s+(.*)$/))) { flushP(); flushL(); const n = m[1].length; out += `<h${n}>${inline(m[2])}</h${n}>`; continue; }
+      if (/^---+$/.test(line)) { flushP(); flushL(); out += "<hr>"; continue; }
+      const kinds = [[/^\s*[-*]\s+(.*)$/, "ul", ""], [/^\s*\d+[.)]\s+(.*)$/, "ol", ""], [/^\s*(\([a-z0-9가-힣]+\)\s+.*)$/, "ul", "plain"]];
+      const hit = kinds.find(([re]) => re.test(line));
+      if (hit) {
+        flushP();
+        const item = line.match(hit[0])[1];
+        const sub = /^\s{2,}/.test(line) && !!list;
+        if (!sub && (!list || list.tag !== hit[1] || list.cls !== hit[2])) { flushL(); list = { tag: hit[1], cls: hit[2], items: [] }; }
+        list.items.push({ t: item, sub }); continue;
+      }
+      flushL(); para.push(line.trim());
+    }
+    flushP(); flushL();
+    return out;
+  }
+  async function loadDoc(name, el, emptyMsg) {
+    try { const { text } = await getText(name); el.innerHTML = md(text) || `<p>${esc(emptyMsg)}</p>`; }
+    catch (e) { el.innerHTML = `<p>${esc(emptyMsg)}</p>`; }
+  }
+
+  // ---------- 거래량·레퍼럴 ----------
+  const usdC = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 });
+  const usdF = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  let TRADE = null, tradeMetric = "volume";
+
+  function parseCSV(text) {
+    const rows = [], notes = [];
+    for (const raw of String(text || "").replace(/\r/g, "").split("\n")) {
+      const line = raw.trim();
+      if (!line) continue;
+      if (line.startsWith("#")) { notes.push(line.replace(/^#\s*/, "")); continue; }
+      const cells = []; let cur = "", q = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (q) { if (ch === '"' && line[i + 1] === '"') { cur += '"'; i++; } else if (ch === '"') q = false; else cur += ch; }
+        else if (ch === '"') q = true; else if (ch === ",") { cells.push(cur); cur = ""; } else cur += ch;
+      }
+      cells.push(cur);
+      rows.push(cells.map((x) => x.trim()));
+    }
+    return { rows, notes };
+  }
+  const toNum = (v) => { const n = parseFloat(String(v || "").replace(/[^0-9.\-]/g, "")); return isFinite(n) ? n : 0; };
+
+  async function loadTrading() {
+    try {
+      const { text, modified } = await getText("trading.csv");
+      const { rows, notes } = parseCSV(text);
+      const head = (rows.shift() || []).map((h) => h.toLowerCase());
+      const ik = head.indexOf("kol"), iv = head.indexOf("volume_usd"), irv = head.indexOf("referral_volume_usd"), ir = head.indexOf("referrals");
+      if (ik < 0) throw new Error("trading.csv 첫 줄에 kol,volume_usd,referral_volume_usd,referrals 머리글이 필요합니다");
+      TRADE = {
+        rows: rows.filter((r) => r[ik]).map((r) => {
+          const own = toNum(r[iv]), ref = irv >= 0 ? toNum(r[irv]) : 0;
+          return { kol: r[ik], own, refVol: ref, volume: own + ref, referrals: toNum(r[ir]) };
+        }),
+        asof: (notes.find((n) => /^기준/.test(n)) || "").replace(/^기준\s*[:：]?\s*/, ""),
+        modified,
+      };
+    } catch (e) { TRADE = { rows: [], error: String(e.message || e) }; }
+    renderTrading();
+  }
+
+  function renderTrading() {
+    const d = DATA, T = TRADE;
+    if (!T) return;
+    if (!d || !(d.kols || []).length) {
+      $("t-lead").textContent = "스쿼드 정보가 아직 없습니다. 조회수 수집이 한 번 실행되면 표시됩니다.";
+      $("t-squads").innerHTML = ""; $("t-kols").innerHTML = ""; return;
+    }
+    const m = tradeMetric, other = m === "volume" ? "referrals" : "volume";
+    const fmtC = (k, v) => (k === "volume" ? usdC.format(v || 0) : `${f(v)}명`);
+    const fmtF = (k, v) => (k === "volume" ? usdF.format(v || 0) : `${f(v)}명`);
+    const label = { volume: "거래량", referrals: "레퍼럴 모객" };
+    const byName = Object.fromEntries(T.rows.map((r) => [r.kol, r]));
+    const known = new Set(d.kols.map((k) => k.name));
+    const unknown = T.rows.filter((r) => !known.has(r.kol)).map((r) => r.kol);
+
+    const kols = d.kols.map((k) => { const r = byName[k.name] || {}; return { ...k, volume: r.volume || 0, own: r.own || 0, refVol: r.refVol || 0, referrals: r.referrals || 0 }; })
+      .sort((a, b) => b[m] - a[m] || b[other] - a[other]);
+    const sq = (d.squads || []).map((s) => {
+      const mem = kols.filter((k) => k.squad === s.id);
+      const sum = (key) => mem.reduce((a, k) => a + k[key], 0);
+      return { ...s, volume: sum("volume"), own: sum("own"), refVol: sum("refVol"), referrals: sum("referrals"), mem };
+    }).sort((a, b) => b[m] - a[m]);
+    const total = sq.reduce((a, s) => a + s[m], 0);
+
+    if (!total) $("t-lead").textContent = `아직 반영된 ${label[m]} 데이터가 없습니다.`;
+    else if (sq.length > 1) {
+      const gap = sq[0][m] - sq[1][m];
+      $("t-lead").textContent = gap ? `${label[m]}은 ${sq[0].name}가 ${sq[1].name}보다 ${fmtF(m, gap)} 앞서 있습니다.` : `${label[m]}은 ${sq[0].name}와 ${sq[1].name}가 동점입니다.`;
+    }
+    const asof = T.asof || (T.modified ? new Date(T.modified).toLocaleString("ko-KR", { dateStyle: "medium", timeStyle: "short" }) : "");
+    $("t-asof").textContent = asof ? `집계 기준 ${asof}` : "";
+
+    $("t-squads").innerHTML = sq.map((s, i) => `<li class="squad" style="--c:${esc(s.color)}">
+        <span class="rank">${i + 1}</span>
+        <div><div class="name">${esc(s.name)}</div><div class="faces">${s.mem.map((k) => av(k, 26, s.color)).join("")}</div><div class="members">${s.mem.map((k) => esc(k.name)).join(", ")}</div></div>
+        <div class="total"><b title="${esc(fmtF(m, s[m]))}">${esc(fmtC(m, s[m]))}</b><small>${label[other]} ${esc(fmtC(other, s[other]))}</small></div>
+        <div class="split"><span>본인 거래량 <strong>${esc(usdC.format(s.own))}</strong></span><span>레퍼럴 유저 거래량 <strong>${esc(usdC.format(s.refVol))}</strong></span></div>
+        <div class="req" aria-label="최소 조건">${reqBar("거래량 최소 조건", s.volume, d.campaign?.min_volume, (v) => usdC.format(v))}</div>
+      </li>`).join("");
+
+    const sqMap = Object.fromEntries((d.squads || []).map((s) => [s.id, s]));
+    const max = Math.max(1, ...kols.map((k) => k[m]));
+    $("t-kols").innerHTML = kols.map((k, i) => {
+      const s = sqMap[k.squad] || { color: "var(--muted)", name: k.squad };
+      return `<li class="kol ${i < 3 ? "top" : ""}" style="--c:${esc(s.color)}">
+        <span class="r">${i + 1}</span>
+        <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${m === "volume" ? `<span>본인 ${esc(usdC.format(k.own))}</span><span>레퍼럴 유저 ${esc(usdC.format(k.refVol))}</span>` : ""}<span>${label[other]} ${esc(fmtC(other, k[other]))}</span></div></div></div>
+        <div class="v"><b title="${esc(fmtF(m, k[m]))}">${esc(fmtC(m, k[m]))}</b></div>
+        <div class="mix"><i class="tg" style="width:${(k[m] / max) * 100}%"></i></div>
+      </li>`;
+    }).join("");
+
+    const warn = [];
+    if (T.error) warn.push(T.error);
+    if (unknown.length) warn.push(`trading.csv에 KOL 목록에 없는 이름이 있습니다: ${unknown.join(", ")}. config.json의 KOL 이름과 똑같이 맞춰 주세요.`);
+    $("t-alerts").hidden = !warn.length;
+    $("t-alerts").innerHTML = warn.length ? `<ul>${warn.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>` : "";
+  }
+
+  $("t-metric").addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    tradeMetric = b.dataset.m;
+    [...e.currentTarget.children].forEach((x) => x.setAttribute("aria-pressed", x === b));
+    renderTrading();
+  });
+
+  // ---------- 탭 ----------
+  const TABS = ["views", "trading", "rules", "content", "terms"];
+  function showTab() {
+    const h = location.hash.slice(1) === "guide" ? "rules" : location.hash.slice(1);
+    const id = TABS.includes(h) ? h : "views";
+    document.querySelectorAll(".tabs a").forEach((a) => {
+      a.setAttribute("aria-selected", a.dataset.tab === id);
+      if (a.dataset.tab === id) a.scrollIntoView({ block: "nearest", inline: "nearest" });
+    });
+    TABS.forEach((t) => ($("panel-" + t).hidden = t !== id));
+    if (id === "views" && DATA) renderChart(DATA);
+  }
+  window.addEventListener("hashchange", () => { showTab(); window.scrollTo(0, 0); });
+  showTab();
+  loadDoc("rules.md", $("rules-doc"), "캠페인 룰을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.");
+  loadDoc("content-guide.md", $("content-doc"), "콘텐츠 가이드는 곧 공개됩니다.");
+  loadDoc("terms.md", $("terms-doc"), "이용약관을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.");
+
+  let rz;
+  window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => DATA && renderChart(DATA), 200); });
+  load().then(loadTrading);
+  if (!window.__DATA__) setInterval(() => { load(); loadTrading(); }, 5 * 60 * 1000);
+  setInterval(() => DATA && renderHeader(DATA), 60 * 1000);
+})();
+</script>
+</body>
+</html>

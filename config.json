@@ -1,0 +1,60 @@
+{
+  "campaign": {
+    "name": "Exilist × Ondo Perps 스쿼드 캠페인",
+    "start": "2026-09-28T00:00:00+09:00",
+    "end": "2026-10-27T23:59:59+09:00",
+    "keywords": [
+      "Ondo",
+      "Ondo Perps",
+      "온도",
+      "온도펍스",
+      "온도퍼프스"
+    ],
+    "exclude_phrases": [
+      "체감온도",
+      "온도차",
+      "온도 차이"
+    ],
+    "excluded_posts": [],
+    "min_posts": 50,
+    "min_views": 300000,
+    "min_volume": 10000000,
+    "x_refresh_minutes": 60,
+    "x_include_replies": false,
+    "spike_views_per_hour": 50000
+  },
+  "squads": [
+    {
+      "id": "A",
+      "name": "스쿼드 A",
+      "color": "#E8472B"
+    },
+    {
+      "id": "B",
+      "name": "스쿼드 B",
+      "color": "#2B63E8"
+    },
+    {
+      "id": "C",
+      "name": "스쿼드 C",
+      "color": "#0E9F6E"
+    }
+  ],
+  "kols": [
+    { "name": "코생", "squad": "A", "telegram": "airdropcosm", "x": "auz2or", "invite_code": "" },
+    { "name": "CEK", "squad": "A", "telegram": "airdr0p_lab", "x": "oldman_cek", "invite_code": "" },
+    { "name": "문유", "squad": "A", "telegram": "myu_moonyu", "x": "moonyu_myu", "invite_code": "" },
+    { "name": "인생코인", "squad": "A", "telegram": "lnsanecoin", "x": "yeonwoohoiic", "invite_code": "" },
+    { "name": "에어드랍코리아", "squad": "A", "telegram": "airdrop_kor", "x": "AirdropKor_eth", "invite_code": "" },
+    { "name": "코인위키", "squad": "B", "telegram": "CoinWiki_MMWW", "x": "0xHADI", "invite_code": "" },
+    { "name": "파구정보", "squad": "B", "telegram": "pgyinfo", "x": "NewPaguInfo", "invite_code": "" },
+    { "name": "크립토메이지", "squad": "B", "telegram": "cryptocurrencymage", "x": "p2ecoin91", "invite_code": "" },
+    { "name": "스내치", "squad": "B", "telegram": "snatch0x", "x": "0x_snatch", "invite_code": "" },
+    { "name": "캇즈의 크립토 노트", "squad": "B", "telegram": "Katzenote", "x": "0xkatze", "invite_code": "" },
+    { "name": "젬하 크립토", "squad": "C", "telegram": "GemHive", "x": "gemhive99", "invite_code": "" },
+    { "name": "이도진 메타버스", "squad": "C", "telegram": "leedogin2", "x": "Lee_dogin", "invite_code": "" },
+    { "name": "피린이", "squad": "C", "telegram": "forevernft", "x": "Pchild_NFT", "invite_code": "" },
+    { "name": "취미생활방", "squad": "C", "telegram": "enjoymyhobby", "x": "Myhobby_YT", "invite_code": "" },
+    { "name": "코인소년", "squad": "C", "telegram": "coinboys", "x": "coinboy717", "invite_code": "" }
+  ]
+}
