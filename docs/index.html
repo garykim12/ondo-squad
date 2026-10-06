@@ -193,8 +193,6 @@ span.av { background: var(--c, var(--muted)); }
 .doc li { margin: 2px 0; }
 .doc li.sub { margin-left: 18px; list-style: circle; }
 .doc a { text-decoration: underline; }
-.doc blockquote { margin: 8px 0 14px; padding: 12px 14px; background: var(--bg); border-left: 3px solid var(--line); border-radius: 6px; font-size: 14px; line-height: 1.6; }
-.doc h3 + ul, .doc h3 + p { margin-top: 0; }
 .doc hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
 
 @media (max-width: 520px) {
@@ -394,7 +392,7 @@ span.av { background: var(--c, var(--muted)); }
         <div><div class="name">${esc(s.name)}</div><div class="faces">${(s.members || []).map((n) => av(kolBy[n] || { name: n }, 26, s.color)).join("")}</div><div class="members">${(s.members || []).map(esc).join(", ")}</div></div>
         <div class="total"><b title="${f(s.views)}회">${c(s.views)}</b><small>${gap}</small></div>
         <div class="split"><span>텔레그램 <strong>${c(s.tg_views)}</strong></span><span>X <strong>${c(s.x_views)}</strong></span>${s.other_views ? `<span>기타 <strong>${c(s.other_views)}</strong></span>` : ""}</div>
-        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("조회수 최소 달성 조건", s.views, d.campaign?.min_views, c)}</div>
+        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("콘텐츠", s.posts, d.campaign?.min_posts, (n) => `${f(n)}건`)}${reqBar("조회수", s.views, d.campaign?.min_views, c)}</div>
       </li>`;
     }).join("");
   }
@@ -541,15 +539,12 @@ span.av { background: var(--c, var(--muted)); }
   }
   function md(src) {
     const lines = String(src || "").replace(/\r/g, "").split("\n");
-    let out = "", para = [], list = null, quote = [];
+    let out = "", para = [], list = null;
     const flushP = () => { if (para.length) { out += `<p>${para.map(inline).join("<br>")}</p>`; para = []; } };
-    const flushQ = () => { if (quote.length) { out += `<blockquote>${quote.map(inline).join("<br>")}</blockquote>`; quote = []; } };
     const flushL = () => { if (list) { out += `<${list.tag}${list.cls ? ` class="${list.cls}"` : ""}>${list.items.map((i) => `<li${i.sub ? ' class="sub"' : ""}>${inline(i.t)}</li>`).join("")}</${list.tag}>`; list = null; } };
     for (const raw of lines) {
       const line = raw.trimEnd();
       let m;
-      if ((m = line.match(/^\s*>\s?(.*)$/))) { flushP(); flushL(); quote.push(m[1]); continue; }
-      flushQ();
       if (!line.trim()) { flushP(); flushL(); continue; }
       if ((m = line.match(/^(#{1,3})\s+(.*)$/))) { flushP(); flushL(); const n = m[1].length; out += `<h${n}>${inline(m[2])}</h${n}>`; continue; }
       if (/^---+$/.test(line)) { flushP(); flushL(); out += "<hr>"; continue; }
@@ -564,7 +559,7 @@ span.av { background: var(--c, var(--muted)); }
       }
       flushL(); para.push(line.trim());
     }
-    flushP(); flushL(); flushQ();
+    flushP(); flushL();
     return out;
   }
   async function loadDoc(name, el, emptyMsg) {
