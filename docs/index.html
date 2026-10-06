@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Exilist × Ondo Perps 스쿼드 캠페인</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -143,6 +144,20 @@ footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line);
 footer p { margin: 0 0 6px; }
 
 
+/* 입장 게이트 */
+body.locked .wrap { visibility: hidden; }
+.gate { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; padding: 24px; background: var(--bg); }
+body.locked .gate { display: flex; }
+.gate-box { width: 100%; max-width: 380px; background: var(--surface); border-radius: 14px; padding: 28px 24px 24px; }
+.gate-box h2 { font-family: var(--num); font-stretch: 105%; font-weight: 800; font-size: 22px; line-height: 1.2; margin: 0 0 6px; }
+.gate-box .sub { color: var(--muted); font-size: 14px; margin: 0 0 18px; }
+.gate-warn { background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 12px 14px; font-size: 13px; line-height: 1.55; margin-bottom: 18px; }
+.gate-warn strong { display: block; font-size: 14px; margin-bottom: 2px; }
+.gate input { width: 100%; font: 16px var(--text); padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+.gate input:focus { outline: 2px solid var(--ink); outline-offset: 1px; }
+.gate button { width: 100%; margin-top: 10px; font: 700 15px var(--text); padding: 12px; border: 0; border-radius: 8px; background: var(--ink); color: var(--bg); cursor: pointer; }
+.gate .err { color: var(--warn); font-size: 13px; min-height: 20px; margin: 8px 0 0; }
+
 /* 탭 */
 .tabs {
   position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
@@ -193,6 +208,8 @@ span.av { background: var(--c, var(--muted)); }
 .doc li { margin: 2px 0; }
 .doc li.sub { margin-left: 18px; list-style: circle; }
 .doc a { text-decoration: underline; }
+.doc blockquote { margin: 8px 0 14px; padding: 12px 14px; background: var(--bg); border-left: 3px solid var(--line); border-radius: 6px; font-size: 14px; line-height: 1.6; }
+.doc h3 + ul, .doc h3 + p { margin-top: 0; }
 .doc hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
 
 @media (max-width: 520px) {
@@ -208,7 +225,17 @@ span.av { background: var(--c, var(--muted)); }
 }
 </style>
 </head>
-<body>
+<body class="locked">
+<div class="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <form class="gate-box" id="gate-form" autocomplete="off">
+    <h2 id="gate-title">Exilist × Ondo Perps 스쿼드 캠페인</h2>
+    <p class="sub">캠페인 참여 KOL 전용 페이지입니다.</p>
+    <div class="gate-warn"><strong>외부 유출을 절대 금합니다.</strong>이 페이지의 링크, 비밀번호, 화면 캡처, 순위와 수치 등 모든 내용을 캠페인 참여자 외에게 공유하지 마세요.</div>
+    <input type="password" id="gate-pw" placeholder="비밀번호" aria-label="비밀번호" required>
+    <button type="submit">확인하고 입장</button>
+    <p class="err" id="gate-err" role="alert"></p>
+  </form>
+</div>
 <div class="wrap">
   <header class="top">
     <h1 id="title">Exilist × Ondo Perps 스쿼드 캠페인</h1>
@@ -303,6 +330,25 @@ span.av { background: var(--c, var(--muted)); }
 
 <script>
 (function () {
+  // ---------- 입장 비밀번호 (SHA-256 해시) ----------
+  const ACCESS_HASH = "e387a00bf7588cc6309f5f0aee0832ed8def67ab91d5999c00c672f856fbab37";
+  const sha256 = async (t) => [...new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)))].map((b) => b.toString(16).padStart(2, "0")).join("");
+  const unlock = () => { document.body.classList.remove("locked"); };
+  try { if (localStorage.getItem("gate") === ACCESS_HASH) unlock(); } catch (e) {}
+  if (document.body.classList.contains("locked")) setTimeout(() => document.getElementById("gate-pw").focus(), 50);
+  document.getElementById("gate-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const v = document.getElementById("gate-pw").value.trim();
+    if ((await sha256(v)) === ACCESS_HASH) {
+      try { localStorage.setItem("gate", ACCESS_HASH); } catch (err) {}
+      unlock();
+      if (typeof renderChart === "function" && DATA) renderChart(DATA);
+    } else {
+      document.getElementById("gate-err").textContent = "비밀번호가 맞지 않습니다. 운영진에게 받은 비밀번호를 확인해 주세요.";
+      document.getElementById("gate-pw").select();
+    }
+  });
+
   const compact = new Intl.NumberFormat("ko-KR", { notation: "compact", maximumFractionDigits: 1 });
   const full = new Intl.NumberFormat("ko-KR");
   const rel = new Intl.RelativeTimeFormat("ko", { numeric: "auto" });
@@ -392,7 +438,7 @@ span.av { background: var(--c, var(--muted)); }
         <div><div class="name">${esc(s.name)}</div><div class="faces">${(s.members || []).map((n) => av(kolBy[n] || { name: n }, 26, s.color)).join("")}</div><div class="members">${(s.members || []).map(esc).join(", ")}</div></div>
         <div class="total"><b title="${f(s.views)}회">${c(s.views)}</b><small>${gap}</small></div>
         <div class="split"><span>텔레그램 <strong>${c(s.tg_views)}</strong></span><span>X <strong>${c(s.x_views)}</strong></span>${s.other_views ? `<span>기타 <strong>${c(s.other_views)}</strong></span>` : ""}</div>
-        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("콘텐츠", s.posts, d.campaign?.min_posts, (n) => `${f(n)}건`)}${reqBar("조회수", s.views, d.campaign?.min_views, c)}</div>
+        <div class="req" aria-label="최소 조건 (✓ 달성)">${reqBar("조회수 최소 달성 조건", s.views, d.campaign?.min_views, c)}</div>
       </li>`;
     }).join("");
   }
@@ -539,12 +585,15 @@ span.av { background: var(--c, var(--muted)); }
   }
   function md(src) {
     const lines = String(src || "").replace(/\r/g, "").split("\n");
-    let out = "", para = [], list = null;
+    let out = "", para = [], list = null, quote = [];
     const flushP = () => { if (para.length) { out += `<p>${para.map(inline).join("<br>")}</p>`; para = []; } };
+    const flushQ = () => { if (quote.length) { out += `<blockquote>${quote.map(inline).join("<br>")}</blockquote>`; quote = []; } };
     const flushL = () => { if (list) { out += `<${list.tag}${list.cls ? ` class="${list.cls}"` : ""}>${list.items.map((i) => `<li${i.sub ? ' class="sub"' : ""}>${inline(i.t)}</li>`).join("")}</${list.tag}>`; list = null; } };
     for (const raw of lines) {
       const line = raw.trimEnd();
       let m;
+      if ((m = line.match(/^\s*>\s?(.*)$/))) { flushP(); flushL(); quote.push(m[1]); continue; }
+      flushQ();
       if (!line.trim()) { flushP(); flushL(); continue; }
       if ((m = line.match(/^(#{1,3})\s+(.*)$/))) { flushP(); flushL(); const n = m[1].length; out += `<h${n}>${inline(m[2])}</h${n}>`; continue; }
       if (/^---+$/.test(line)) { flushP(); flushL(); out += "<hr>"; continue; }
@@ -559,7 +608,7 @@ span.av { background: var(--c, var(--muted)); }
       }
       flushL(); para.push(line.trim());
     }
-    flushP(); flushL();
+    flushP(); flushL(); flushQ();
     return out;
   }
   async function loadDoc(name, el, emptyMsg) {
