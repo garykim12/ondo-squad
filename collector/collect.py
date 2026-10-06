@@ -233,7 +233,7 @@ def tweet_metrics(t):
     }
 
 
-def collect_x(cfg, data, matcher_for, start, end, now, errors):
+def collect_x(cfg, data, matcher_for, start, end, now, errors, final=False):
     token = os.environ.get("X_BEARER_TOKEN")
     if not token:
         log("X: 시크릿(X_BEARER_TOKEN)이 없어 건너뜁니다")
@@ -242,12 +242,13 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors):
     camp = cfg["campaign"]
     state = data["state"]
 
-    # API 비용 절약: x_refresh_minutes 간격으로만 호출
-    interval = camp.get("x_refresh_minutes", 60)
+    # 새 글 찾기 간격 (읽은 글 수만큼 과금되므로 간격을 늘려도 비용은 거의 같음)
+    interval = camp.get("x_discover_minutes", camp.get("x_refresh_minutes", 60))
     last = state.get("x_last_run")
-    if last and (now - parse_dt(last)).total_seconds() < interval * 60 - 120:
+    if not final and last and (now - parse_dt(last)).total_seconds() < interval * 60 - 120:
         log(f"X: 마지막 수집 후 {interval}분이 안 지나 건너뜁니다")
         return
+    reads = 0  # 이번 실행에서 읽은 게시물 수 (과금 기준)
 
     spike = camp.get("spike_views_per_hour", 0)
     x = XClient(token)
@@ -297,6 +298,7 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors):
                 res = x.get(f"/users/{uid}/tweets", params)
                 meta = res.get("meta", {})
                 newest = newest or meta.get("newest_id")
+                reads += len(res.get("data", []))
                 for t in res.get("data", []):
                     created = parse_dt(t["created_at"])
                     if created < start or created > end:
@@ -326,8 +328,24 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors):
             errors.append(f"X {kol['name']} (@{h}): {e}")
 
     # 3) 이미 찾은 게시물 조회수 갱신 (100개씩 묶어서)
+    # 비용 절약: 올린 지 2일 이내 글은 x_refresh_recent_hours마다,
+    # 그보다 오래된 글은 x_refresh_old_days마다, 캠페인 마감 직후 전체 1회 최종 갱신
+    recent_h = camp.get("x_refresh_recent_hours", 6)
+    old_d = camp.get("x_refresh_old_days", 7)
+
+    def needs_refresh(p):
+        if final:
+            return True
+        last = p.get("updated_at")
+        if not last:
+            return True
+        since_upd = (now - parse_dt(last)).total_seconds()
+        if (now - parse_dt(p["created_at"])).total_seconds() <= 2 * 86400:
+            return since_upd >= recent_h * 3600 - 600
+        return since_upd >= old_d * 86400 - 600
+
     known = [k[2:] for k, p in data["posts"].items()
-             if p.get("platform") == "x" and not p.get("deleted") and k not in fresh]
+             if p.get("platform") == "x" and not p.get("deleted") and k not in fresh and needs_refresh(p)]
     for i in range(0, len(known), 100):
         batch = known[i:i + 100]
         try:
@@ -335,6 +353,7 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors):
         except Exception as e:
             errors.append(f"X 조회수 갱신: {e}")
             break
+        reads += len(res.get("data", []))
         for t in res.get("data", []):
             upsert_post(data, f"x:{t['id']}", tweet_metrics(t), now, spike)
         for err in res.get("errors", []):  # 삭제·비공개 전환된 글
@@ -343,7 +362,12 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors):
                 data["posts"][f"x:{rid}"]["deleted"] = True
 
     state["x_last_run"] = iso(now)
-    log(f"X: API 호출 {x.calls}회")
+    # 일별 읽기 수 기록 (비용 확인용, 한국시간 기준 날짜)
+    day = (now + timedelta(hours=9)).strftime("%Y-%m-%d")
+    usage = state.setdefault("x_reads_by_day", {})
+    usage[day] = usage.get(day, 0) + reads
+    log(f"X: API 호출 {x.calls}회, 게시물 {reads}건 읽음 (약 ${reads * 0.005:.2f}). "
+        f"오늘 누적 {usage[day]}건 (약 ${usage[day] * 0.005:.2f})")
 
 
 
@@ -476,19 +500,23 @@ def main() -> int:
     collected = False
     if now < start:
         log("캠페인 시작 전입니다. 수집하지 않습니다.")
-    elif now > lock:
-        log("확정 시각이 지났습니다. 순위를 최종 확정합니다.")
-        data["final"] = True
     else:
+        final = now > lock
+        if final:
+            log("마감 시각이 지났습니다. 전체 게시물 조회수를 마지막으로 한 번 갱신하고 순위를 확정합니다.")
+
         def matcher_for(kol):
             # 공통 키워드 + 해당 KOL의 초대코드
             extra = [kol["invite_code"]] if kol.get("invite_code") else []
             return make_matcher(camp["keywords"] + extra, camp.get("exclude_phrases", []))
 
         asyncio.run(collect_telegram(cfg, data, matcher_for, start, end, now, errors))
-        collect_x(cfg, data, matcher_for, start, end, now, errors)
+        collect_x(cfg, data, matcher_for, start, end, now, errors, final=final)
         load_manual_posts(cfg, data, now, errors)
         collected = True
+        if final:
+            data["final"] = True
+            data["final_at"] = iso(now)
 
     # 운영자가 수동으로 제외한 게시물 (config의 excluded_posts에 URL 입력)
     excluded = {norm_url(u) for u in camp.get("excluded_posts", []) if u and u.strip()}
