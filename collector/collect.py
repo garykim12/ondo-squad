@@ -164,6 +164,8 @@ async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
                 async for msg in client.iter_messages(entity, offset_date=start, reverse=True):
                     if msg.date > end:
                         break
+                    if msg.fwd_from:  # 다른 채널 글을 전달(포워딩)한 건 집계 제외
+                        continue
                     hits = match(msg.message)
                     if not hits:
                         continue
