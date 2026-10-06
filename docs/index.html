@@ -114,12 +114,26 @@ section.block { margin-top: 44px; }
 .kol .handles a { text-decoration: none; }
 .kol .handles a:hover { text-decoration: underline; }
 .kol .v { text-align: right; }
-.kol .v b { font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: 22px; }
+.kol .v b { display: block; font-family: var(--num); font-weight: 800; font-stretch: 72%; font-size: 22px; line-height: 1.1; }
 .kol .v small { display: block; font-size: 12px; color: var(--muted); }
 .kol .mix { grid-column: 2 / -1; display: flex; height: 4px; border-radius: 2px; overflow: hidden; background: var(--track); margin-top: 6px; }
 .kol .mix i { display: block; height: 100%; }
 .kol .mix .tg { background: var(--c); }
 .kol .mix .x { background: var(--c); opacity: .45; }
+
+/* KOL별 게시물 펼치기 */
+.kol-toggle { margin-top: 2px; font: 500 12px var(--text); color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; cursor: pointer; white-space: nowrap; }
+.kol-toggle:hover, .kol-toggle[aria-expanded="true"] { color: var(--ink); border-color: var(--ink); }
+.kol-toggle::after { content: " ▾"; }
+.kol-toggle[aria-expanded="true"]::after { content: " ▴"; }
+.kol-posts { grid-column: 1 / -1; list-style: none; margin: 10px 0 2px; padding: 0; border-top: 1px dashed var(--line); }
+.kol-posts li a { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: center; padding: 9px 2px; text-decoration: none; border-bottom: 1px solid var(--line); font-size: 13px; }
+.kol-posts li:last-child a { border-bottom: 0; }
+.kol-posts li a:hover .t { text-decoration: underline; }
+.kol-posts .meta { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.kol-posts .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.kol-posts .pv { font-family: var(--num); font-stretch: 72%; font-weight: 800; font-size: 16px; text-align: right; }
+.kol-posts .none { color: var(--muted); font-size: 13px; padding: 10px 2px; }
 
 /* 게시물 */
 .posts { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
@@ -480,6 +494,18 @@ span.av { background: var(--c, var(--muted)); }
       <div class="legend">${sq.map((s) => `<span style="--c:${esc(s.color)}">${esc(s.name)}</span>`).join("")}</div>`;
   }
 
+  const openKols = new Set();
+  const shortDate = new Intl.DateTimeFormat("ko-KR", { month: "numeric", day: "numeric" });
+  function kolPostsHTML(d, name) {
+    const posts = Object.values(d.posts || {}).filter((p) => p.kol === name && !p.deleted && !p.excluded)
+      .sort((a, b) => b.views - a.views);
+    if (!posts.length) return `<ul class="kol-posts"><li class="none">아직 집계된 게시물이 없습니다.</li></ul>`;
+    return `<ul class="kol-posts">${posts.map((p) => `<li><a href="${esc(p.url)}" target="_blank" rel="noopener">
+      <span class="meta">${esc(shortDate.format(new Date(p.created_at)))} ${p.platform === "telegram" ? "TG" : p.platform === "x" ? "X" : esc(p.platform || "")}</span>
+      <span class="t">${esc((p.text || "").replace(/\s+/g, " ")) || "(본문 없음)"}</span>
+      <span class="pv" title="${f(p.views)}회">${c(p.views)}</span></a></li>`).join("")}</ul>`;
+  }
+
   function renderKols(d) {
     const sqMap = Object.fromEntries((d.squads || []).map((s) => [s.id, s]));
     const filt = $("kol-filter");
@@ -494,8 +520,9 @@ span.av { background: var(--c, var(--muted)); }
       return `<li class="kol ${k.rank <= 3 ? "top" : ""}" style="--c:${esc(s.color)}">
         <span class="r">${k.rank}</span>
         <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${tg}${xx}</div></div></div>
-        <div class="v"><b title="${f(k.views)}회">${c(k.views)}</b><small>게시물 ${f(k.posts)}개</small></div>
+        <div class="v"><b title="${f(k.views)}회">${c(k.views)}</b><button class="kol-toggle" data-kol="${esc(k.name)}" aria-expanded="${openKols.has(k.name)}">게시물 ${f(k.posts)}개</button></div>
         <div class="mix" title="텔레그램 ${f(k.tg_views)} / X ${f(k.x_views)}"><i class="tg" style="width:${tgp}%"></i><i class="x" style="width:${k.views ? 100 - tgp : 0}%"></i></div>
+        ${openKols.has(k.name) ? kolPostsHTML(d, k.name) : ""}
       </li>`;
     }).join("") || `<li class="empty">이 스쿼드에 등록된 KOL이 없습니다.</li>`;
   }
@@ -539,6 +566,12 @@ span.av { background: var(--c, var(--muted)); }
     renderHeader(d); renderBattle(d); if (!$("panel-views").hidden) renderChart(d); renderKols(d); renderPosts(d); renderFooter(d); renderTrading();
   }
 
+  $("kols").addEventListener("click", (e) => {
+    const b = e.target.closest(".kol-toggle"); if (!b || !DATA) return;
+    const n = b.dataset.kol;
+    openKols.has(n) ? openKols.delete(n) : openKols.add(n);
+    renderKols(DATA);
+  });
   $("kol-filter").addEventListener("click", (e) => {
     const b = e.target.closest("button"); if (!b || !DATA) return;
     kolFilter = b.dataset.f; renderKols(DATA);
