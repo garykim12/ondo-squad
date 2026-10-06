@@ -45,5 +45,9 @@ jobs:
             exit 0
           fi
           git commit -m "data: 조회수 업데이트"
-          git pull --rebase
-          git push
+          for i in 1 2 3; do
+            git pull --rebase -X theirs && git push && exit 0
+            git rebase --abort 2>/dev/null || true
+            sleep 5
+          done
+          exit 1
