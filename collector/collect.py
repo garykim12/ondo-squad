@@ -26,6 +26,8 @@ DATA_PATH = ROOT / "docs" / "data.json"
 MANUAL_PATH = ROOT / "docs" / "manual_posts.csv"
 AVATAR_DIR = ROOT / "docs" / "avatars"
 EXCLUDED_PATH = ROOT / "docs" / "excluded_posts.txt"
+EXPORT_DIR = ROOT / "docs" / "export"
+KST = timezone(timedelta(hours=9))
 X_API = "https://api.x.com/2"
 HISTORY_MAX = 3000  # 30분 간격 기준 약 2개월
 
@@ -160,11 +162,14 @@ async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
                 except Exception as e:
                     errors.append(f"텔레그램 {kol['name']} 채널 사진: {e}")
                 seen = set()
+                fwd = 0
                 # 캠페인 시작 시각 이후 게시물을 오래된 순으로 훑음
                 async for msg in client.iter_messages(entity, offset_date=start, reverse=True):
                     if msg.date > end:
                         break
                     if msg.fwd_from:  # 다른 채널 글을 전달(포워딩)한 건 집계 제외
+                        if match(msg.message):
+                            fwd += 1
                         continue
                     hits = match(msg.message)
                     if not hits:
@@ -186,7 +191,7 @@ async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
                 for key, p in data["posts"].items():
                     if p.get("platform") == "telegram" and p.get("kol") == kol["name"] and key not in seen:
                         p["deleted"] = True
-                log(f"텔레그램 @{username}: 키워드 게시물 {len(seen)}개")
+                log(f"텔레그램 @{username}: 키워드 게시물 {len(seen)}개 (포워딩 {fwd}개 제외)")
             except Exception as e:  # 한 채널 실패가 전체를 멈추지 않도록
                 errors.append(f"텔레그램 {kol['name']} (@{channel}): {e}")
             await asyncio.sleep(1)
@@ -478,6 +483,42 @@ def aggregate(cfg, data):
     return kol_list, squads
 
 
+def kst(s):
+    return parse_dt(s).astimezone(KST).strftime("%Y-%m-%d %H:%M") if s else ""
+
+
+def write_exports(cfg, data, kols, squads):
+    """구글 시트 IMPORTDATA용 CSV (docs/export/*.csv)."""
+    EXPORT_DIR.mkdir(parents=True, exist_ok=True)
+    camp = cfg["campaign"]
+    min_views = camp.get("min_views", 0)
+    updated = kst(data.get("updated_at"))
+    names = {s["id"]: s["name"] for s in squads}
+    plat = {"telegram": "텔레그램", "x": "X"}
+
+    def save(name, header, rows):
+        with open(EXPORT_DIR / name, "w", encoding="utf-8", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(header)
+            w.writerows(rows)
+
+    save("squads.csv",
+         ["순위", "스쿼드", "총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "조회수 최소 조건", "달성 여부", "업데이트(KST)"],
+         [[s["rank"], s["name"], s["views"], s["tg_views"], s["x_views"], s["posts"], min_views,
+           "달성" if min_views and s["views"] >= min_views else "미달", updated] for s in squads])
+    save("kols.csv",
+         ["순위", "KOL", "스쿼드", "총 조회수", "텔레그램 조회수", "X 조회수", "게시물 수", "텔레그램", "X"],
+         [[k["rank"], k["name"], names.get(k["squad"], k["squad"]), k["views"], k["tg_views"], k["x_views"],
+           k["posts"], k.get("telegram", ""), k.get("x", "")] for k in kols])
+    squad_of = {k["name"]: names.get(k["squad"], k["squad"]) for k in kols}
+    posts = [p for p in data["posts"].values() if not p.get("deleted") and not p.get("excluded") and p.get("kol") in squad_of]
+    posts.sort(key=lambda p: p.get("created_at", ""), reverse=True)
+    save("posts.csv",
+         ["게시일(KST)", "KOL", "스쿼드", "플랫폼", "조회수", "링크", "본문 미리보기"],
+         [[kst(p.get("created_at")), p["kol"], squad_of[p["kol"]], plat.get(p.get("platform"), p.get("platform", "")),
+           p.get("views", 0), p.get("url", ""), " ".join((p.get("text") or "").split())[:100]] for p in posts])
+
+
 def main() -> int:
     cfg = load_json(CONFIG_PATH, None)
     if not cfg:
@@ -547,6 +588,7 @@ def main() -> int:
     DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(DATA_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
+    write_exports(cfg, data, kols, squads)
 
     for e in errors:
         print(f"::warning::{e}", flush=True)  # GitHub Actions 경고로 표시
