@@ -189,7 +189,7 @@ body.locked .gate { display: flex; }
 .panel[hidden] { display: none; }
 .panel > :first-child { margin-top: 28px; }
 
-/* 거래량·레퍼럴 */
+/* 거래량·가입자 */
 .asof { color: var(--muted); font-size: 13px; margin: 6px 0 0; }
 .squad .other { color: var(--muted); font-size: 12px; display: block; }
 .note { margin-top: 20px; color: var(--muted); font-size: 13px; max-width: 70ch; }
@@ -318,7 +318,7 @@ span.av { background: var(--c, var(--muted)); }
         <p class="lead" id="t-lead" style="margin:0"></p>
         <div class="seg" id="t-metric" role="group" aria-label="지표">
           <button data-m="volume" aria-pressed="true">거래량</button>
-          <button data-m="referrals" aria-pressed="false">레퍼럴 모객 수</button>
+          <button data-m="referrals" aria-pressed="false">가입자 수</button>
         </div>
       </div>
       <p class="asof" id="t-asof"></p>
@@ -329,7 +329,7 @@ span.av { background: var(--c, var(--muted)); }
       <ol class="kols" id="t-kols"></ol>
     </section>
     <div class="alerts" id="t-alerts" hidden></div>
-    <p class="note">거래량은 KOL 본인 거래량과 레퍼럴 유저 거래량을 합산합니다. 거래량과 레퍼럴 모객 수는 운영진이 Ondo Perps 데이터를 받아 직접 반영하는 수치입니다. 셀프 레퍼럴과 워시 트레이딩으로 만든 수치는 확인되는 대로 제외됩니다.</p>
+    <p class="note">거래량은 KOL 본인 거래량과, KOL의 초대 코드로 가입한 가입자들의 거래량을 합산합니다. 거래량과 가입자 수는 운영진이 Ondo Perps 데이터를 받아 직접 반영하는 수치입니다. 본인 지갑을 가입자처럼 늘리거나 워시 트레이딩으로 만든 수치는 확인되는 대로 제외됩니다.</p>
   </div>
 
   <div class="panel" id="panel-rules" role="tabpanel" hidden>
@@ -658,7 +658,7 @@ span.av { background: var(--c, var(--muted)); }
     catch (e) { el.innerHTML = `<p>${esc(emptyMsg)}</p>`; }
   }
 
-  // ---------- 거래량·레퍼럴 ----------
+  // ---------- 거래량·가입자 ----------
   const usdC = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 });
   const usdF = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
   let TRADE = null, tradeMetric = "volume";
@@ -711,7 +711,8 @@ span.av { background: var(--c, var(--muted)); }
     const m = tradeMetric, other = m === "volume" ? "referrals" : "volume";
     const fmtC = (k, v) => (k === "volume" ? usdC.format(v || 0) : `${f(v)}명`);
     const fmtF = (k, v) => (k === "volume" ? usdF.format(v || 0) : `${f(v)}명`);
-    const label = { volume: "거래량", referrals: "레퍼럴 모객" };
+    const label = { volume: "거래량", referrals: "가입자 수" };
+    const topic = { volume: "거래량은", referrals: "가입자 수는" };
     const byName = Object.fromEntries(T.rows.map((r) => [r.kol, r]));
     const known = new Set(d.kols.map((k) => k.name));
     const unknown = T.rows.filter((r) => !known.has(r.kol)).map((r) => r.kol);
@@ -728,7 +729,7 @@ span.av { background: var(--c, var(--muted)); }
     if (!total) $("t-lead").textContent = `아직 반영된 ${label[m]} 데이터가 없습니다.`;
     else if (sq.length > 1) {
       const gap = sq[0][m] - sq[1][m];
-      $("t-lead").textContent = gap ? `${label[m]}은 ${sq[0].name}가 ${sq[1].name}보다 ${fmtF(m, gap)} 앞서 있습니다.` : `${label[m]}은 ${sq[0].name}와 ${sq[1].name}가 동점입니다.`;
+      $("t-lead").textContent = gap ? `${topic[m]} ${sq[0].name}가 ${sq[1].name}보다 ${fmtF(m, gap)} 앞서 있습니다.` : `${topic[m]} ${sq[0].name}와 ${sq[1].name}가 동점입니다.`;
     }
     const asof = T.asof || (T.modified ? new Date(T.modified).toLocaleString("ko-KR", { dateStyle: "medium", timeStyle: "short" }) : "");
     $("t-asof").textContent = asof ? `집계 기준 ${asof}` : "";
@@ -737,7 +738,7 @@ span.av { background: var(--c, var(--muted)); }
         <span class="rank">${i + 1}</span>
         <div><div class="name">${esc(s.name)}</div><div class="faces">${s.mem.map((k) => av(k, 26, s.color)).join("")}</div><div class="members">${s.mem.map((k) => esc(k.name)).join(", ")}</div></div>
         <div class="total"><b title="${esc(fmtF(m, s[m]))}">${esc(fmtC(m, s[m]))}</b><small>${label[other]} ${esc(fmtC(other, s[other]))}</small></div>
-        <div class="split"><span>본인 거래량 <strong>${esc(usdC.format(s.own))}</strong></span><span>레퍼럴 유저 거래량 <strong>${esc(usdC.format(s.refVol))}</strong></span></div>
+        <div class="split"><span>본인 거래량 <strong>${esc(usdC.format(s.own))}</strong></span><span>가입자 거래량 <strong>${esc(usdC.format(s.refVol))}</strong></span></div>
         <div class="req" aria-label="최소 조건">${reqBar("거래량 최소 조건", s.volume, d.campaign?.min_volume, (v) => usdC.format(v))}</div>
       </li>`).join("");
 
@@ -747,7 +748,7 @@ span.av { background: var(--c, var(--muted)); }
       const s = sqMap[k.squad] || { color: "var(--muted)", name: k.squad };
       return `<li class="kol ${i < 3 ? "top" : ""}" style="--c:${esc(s.color)}">
         <span class="r">${i + 1}</span>
-        <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${m === "volume" ? `<span>본인 ${esc(usdC.format(k.own))}</span><span>레퍼럴 유저 ${esc(usdC.format(k.refVol))}</span>` : ""}<span>${label[other]} ${esc(fmtC(other, k[other]))}</span></div></div></div>
+        <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${m === "volume" ? `<span>본인 ${esc(usdC.format(k.own))}</span><span>가입자 ${esc(usdC.format(k.refVol))}</span>` : ""}<span>${label[other]} ${esc(fmtC(other, k[other]))}</span></div></div></div>
         <div class="v"><b title="${esc(fmtF(m, k[m]))}">${esc(fmtC(m, k[m]))}</b></div>
         <div class="mix"><i class="tg" style="width:${(k[m] / max) * 100}%"></i></div>
       </li>`;
