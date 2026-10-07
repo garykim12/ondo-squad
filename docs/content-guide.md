@@ -215,7 +215,7 @@ Ondo Perps를 직접 써보고 느낀 점을 짧게라도 솔직하게 남겨주
 
 ---
 
-## 참고 팩트
+## Ondo Perps 진행중인 프로모션
 
 - 미국 주식, ETF, 지수, 원자재 무기한 선물을 24시간 365일, 최대 20배로 거래 ([공지](https://ondoperps.xyz/blog/ondo-perps-is-live-in-public-beta))
 - 담보로 USDC(아비트럼 포함)뿐 아니라 토큰화 주식·ETF, 토큰화 금·은도 사용 가능 ([주식·ETF](https://ondoperps.xyz/blog/tokenized-stock-collateral), [금·은](https://ondoperps.xyz/blog/tokenized-gold-silver-collateral), [아비트럼 USDC](https://ondoperps.xyz/blog/arbitrum-usdc-collateral))
@@ -223,6 +223,6 @@ Ondo Perps를 직접 써보고 느낀 점을 짧게라도 솔직하게 남겨주
 - 10월 6일부터 현물 트레이딩 미션: 현물 잔고에 자금을 넣고 Ondo Stocks 현물 거래 조건을 채우면 최대 $100 지급 ([공지](https://app.ondoperps.xyz/announcements/spot-trading-mission-oct-6))
 - USDC 트레이딩 리워드(주간 175K USDC): 매주 화요일~월요일(UTC) 기준, 48시간 안에 거래 계정으로 자동 지급 ([공지](https://ondoperps.xyz/blog/earn-usdc-rewards))
 - Ondo Points: 매주 500만 포인트를 거래량과 미결제약정 기준으로 배분 ([공지](https://ondoperps.xyz/blog/earn-ondo-points))
-- 레퍼럴 코드로 유입 시, 최대 30% 할인 ([리워드·레퍼럴 안내](https://ondoperps.xyz/blog/multiple-ways-to-earn))
+- 레퍼럴 코드로 유입 시, 최대 30% 할인
 
-이벤트 조건은 바뀔 수 있어요. 최신 내용은 [Ondo Perps 블로그](https://ondoperps.xyz/blog), [Ondo Perps 트위터](https://x.com/OndoPerps), [Ondo Perps 텔레그램](https://t.me/official_ondo_perps)에서 확인해 주세요.
+이벤트 조건은 바뀔 수 있어요. 최신 내용은 [Ondo Perps 블로그](https://ondoperps.xyz/blog), [Ondo Perps 공지사항](https://app.ondoperps.xyz/announcements), [Ondo Perps 트위터](https://x.com/OndoPerps) 에서 확인해 주세요.
