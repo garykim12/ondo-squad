@@ -17,7 +17,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdropcosm:3068": {
@@ -35,7 +35,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdropcosm:3073": {
@@ -54,7 +54,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20584": {
@@ -73,7 +73,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20587": {
@@ -88,11 +88,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20589": {
@@ -106,11 +106,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20592": {
@@ -128,7 +128,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20619": {
@@ -147,7 +147,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20692": {
@@ -162,11 +162,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 2,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:myu_moonyu:7894": {
@@ -185,7 +185,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:myu_moonyu:7895": {
@@ -203,7 +203,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:myu_moonyu:7897": {
@@ -221,7 +221,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:lnsanecoin:10967": {
@@ -240,7 +240,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:lnsanecoin:10972": {
@@ -258,7 +258,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:lnsanecoin:10974": {
@@ -276,7 +276,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdrop_kor:21495": {
@@ -296,7 +296,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdrop_kor:21496": {
@@ -315,7 +315,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdrop_kor:21525": {
@@ -330,11 +330,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5593": {
@@ -353,7 +353,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5598": {
@@ -372,7 +372,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:pgyinfo:14852": {
@@ -410,7 +410,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:pgyinfo:14858": {
@@ -428,7 +428,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:pgyinfo:14890": {
@@ -520,7 +520,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:cryptocurrencymage:23478": {
@@ -557,7 +557,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:snatch0x:4227": {
@@ -575,7 +575,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:katzenote:2223": {
@@ -593,7 +593,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:gemhive:38554": {
@@ -613,7 +613,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:gemhive:38558": {
@@ -631,7 +631,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": true
   },
   "tg:gemhive:38574": {
@@ -649,7 +649,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": true
   },
   "tg:gemhive:38575": {
@@ -668,7 +668,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:gemhive:38585": {
@@ -686,7 +686,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": true
   },
   "tg:gemhive:38590": {
@@ -705,7 +705,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:gemhive:38677": {
@@ -724,7 +724,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:gemhive:38716": {
@@ -744,7 +744,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:leedogin2:24124": {
@@ -763,7 +763,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:leedogin2:24130": {
@@ -781,7 +781,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:leedogin2:24185": {
@@ -800,7 +800,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:leedogin2:24210": {
@@ -837,7 +837,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:forevernft:10652": {
@@ -857,7 +857,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:forevernft:10662": {
@@ -876,7 +876,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:forevernft:10682": {
@@ -891,11 +891,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:forevernft:10689": {
@@ -909,11 +909,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 3,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:forevernft:10718": {
@@ -922,17 +922,17 @@
    "url": "https://t.me/forevernft/10718",
    "text": "✔️퍼프덱스, $1B 거래량까지 얼마나 걸렸을까?\n\n주요 Perp DEX가 누적 거래량 $1B를 달성하는 데 걸린 시간입니다. \n• Hyperliquid: 25일\n• Lighter: 35일\n• Extended: 43일\n• Arcus: 44일\n• RiseX: 60일\n• Pacifica: 85일\n• Ondo Perps: 96일\n• Aster: 110일\n• Perpl: 164일 \n\n속도만 놓고 보면 Hyperliquid가 압도적 1위, Arcus도 44일로 상당히 빠른 편이네요. \n\nArcus 첫 주차",
    "created_at": "2026-10-06T00:46:56Z",
-   "views": 735,
+   "views": 736,
    "forwards": 11,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 2,
+   "last_delta": 1,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97805": {
@@ -951,7 +951,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97810": {
@@ -970,7 +970,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97811": {
@@ -989,7 +989,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97814": {
@@ -1008,7 +1008,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinboys:22187": {
@@ -1027,7 +1027,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinboys:22189": {
@@ -1046,7 +1046,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinboys:22272": {
@@ -1064,7 +1064,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinboys:22311": {
@@ -1084,7 +1084,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "x:2107129269566746736": {
@@ -1689,11 +1689,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:coinboys:22334": {
@@ -1711,7 +1711,7 @@
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "x:2107405554520064118": {
@@ -1768,11 +1768,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T13:09:34Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20709": {
@@ -1786,11 +1786,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 4,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T19:00:23Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "tg:myu_moonyu:7916": {
@@ -1804,11 +1804,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 2,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T19:00:23Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   },
   "x:2107522176463356252": {
@@ -1863,11 +1863,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 5,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-07T02:38:46Z",
    "deleted": false,
-   "updated_at": "2026-10-07T09:48:28Z",
+   "updated_at": "2026-10-07T09:49:59Z",
    "excluded": false
   }
  },
@@ -2039,6 +2039,14 @@
     "A": 34214,
     "B": 15832
    }
+  },
+  {
+   "t": "2026-10-07T09:49:59Z",
+   "s": {
+    "C": 38714,
+    "A": 34214,
+    "B": 15832
+   }
   }
  ],
  "state": {
@@ -2144,7 +2152,7 @@
    "2026-10-07": 55
   }
  },
- "updated_at": "2026-10-07T09:48:28Z",
+ "updated_at": "2026-10-07T09:49:59Z",
  "errors": [],
  "campaign": {
   "name": "Exilist × Ondo Perps 스쿼드 캠페인",
@@ -2167,8 +2175,8 @@
    "id": "C",
    "name": "스쿼드 C",
    "color": "#0E9F6E",
-   "views": 38713,
-   "tg_views": 33361,
+   "views": 38714,
+   "tg_views": 33362,
    "x_views": 5352,
    "other_views": 0,
    "posts": 33,
@@ -2278,10 +2286,10 @@
    "x": "Pchild_NFT",
    "avatar": "avatars/forevernft.jpg?v=6240139348955302716",
    "posts": 7,
-   "tg_views": 7988,
+   "tg_views": 7989,
    "x_views": 455,
    "other_views": 0,
-   "views": 8443,
+   "views": 8444,
    "rank": 5
   },
   {
