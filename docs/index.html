@@ -224,6 +224,7 @@ span.av { background: var(--c, var(--muted)); }
 .doc li { margin: 2px 0; }
 .doc li.sub { margin-left: 18px; list-style: circle; }
 .doc a { text-decoration: underline; }
+.doc-lock { max-width: 72ch; margin-bottom: 10px; background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: 500; }
 .doc blockquote { margin: 8px 0 14px; padding: 12px 14px; background: var(--bg); border-left: 3px solid var(--line); border-radius: 6px; font-size: 14px; line-height: 1.6; }
 .doc h3 + ul, .doc h3 + p { margin-top: 0; }
 .doc hr { border: 0; border-top: 1px solid var(--line); margin: 24px 0; }
@@ -246,7 +247,7 @@ span.av { background: var(--c, var(--muted)); }
   <form class="gate-box" id="gate-form" autocomplete="off">
     <h2 id="gate-title">Exilist × Ondo Perps 스쿼드 캠페인</h2>
     <p class="sub">캠페인 참여 KOL 전용 페이지입니다.</p>
-    <div class="gate-warn"><strong>외부 유출을 절대 금합니다.</strong>이 페이지의 링크, 비밀번호, 화면 캡처, 순위와 수치 등 모든 내용을 캠페인 참여자 외에게 공유하지 마세요.</div>
+    <div class="gate-warn"><strong>외부 유출을 절대 금합니다.</strong>이 페이지의 링크와 비밀번호, 가이드·룰·약관 등 운영 내용은 캠페인 참여자 외에게 공유하지 마세요.<br>단, 스쿼드 순위 화면 캡처는 콘텐츠로 공유할 수 있어요.</div>
     <input type="password" id="gate-pw" placeholder="비밀번호" aria-label="비밀번호" required>
     <button type="submit">확인하고 입장</button>
     <p class="err" id="gate-err" role="alert"></p>
@@ -332,14 +333,17 @@ span.av { background: var(--c, var(--muted)); }
   </div>
 
   <div class="panel" id="panel-rules" role="tabpanel" hidden>
+    <div class="doc-lock">🔒 이 탭의 내용은 캠페인 참여자 전용입니다. 캡처나 복사로 외부에 공유하지 마세요.</div>
     <article class="doc" id="rules-doc"></article>
   </div>
 
   <div class="panel" id="panel-content" role="tabpanel" hidden>
+    <div class="doc-lock">🔒 이 탭의 내용은 캠페인 참여자 전용입니다. 캡처나 복사로 외부에 공유하지 마세요.</div>
     <article class="doc" id="content-doc"></article>
   </div>
 
   <div class="panel" id="panel-terms" role="tabpanel" hidden>
+    <div class="doc-lock">🔒 이 탭의 내용은 캠페인 참여자 전용입니다. 캡처나 복사로 외부에 공유하지 마세요.</div>
     <article class="doc" id="terms-doc"></article>
   </div>
   </main>
