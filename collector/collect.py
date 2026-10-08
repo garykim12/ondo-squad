@@ -253,7 +253,10 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors, final=False):
     interval = camp.get("x_discover_minutes", camp.get("x_refresh_minutes", 60))
     last = state.get("x_last_run")
     if not final and last and (now - parse_dt(last)).total_seconds() < interval * 60 - 120:
-        log(f"X: 마지막 수집 후 {interval}분이 안 지나 건너뜁니다")
+        last_k = parse_dt(last).astimezone(timezone(timedelta(hours=9)))
+        next_k = last_k + timedelta(minutes=interval - 2)
+        log(f"X: 마지막 X 수집 {last_k:%H:%M}(KST) 후 {interval}분이 안 지나 이번엔 건너뜁니다. "
+            f"다음 X 수집은 {next_k:%H:%M}(KST) 이후 실행 때. 직전 결과: {state.get('x_last_summary', '-')}")
         return
     reads = 0  # 이번 실행에서 읽은 게시물 수 (과금 기준)
 
@@ -369,6 +372,7 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors, final=False):
                 data["posts"][f"x:{rid}"]["deleted"] = True
 
     state["x_last_run"] = iso(now)
+    state["x_last_summary"] = f"새 키워드 글 {len(fresh)}개, 조회수 갱신 {len(known)}개"
     # 일별 읽기 수 기록 (비용 확인용, 한국시간 기준 날짜)
     day = (now + timedelta(hours=9)).strftime("%Y-%m-%d")
     usage = state.setdefault("x_reads_by_day", {})
@@ -572,8 +576,11 @@ def main() -> int:
             extra = [kol["invite_code"]] if kol.get("invite_code") else []
             return make_matcher(camp["keywords"] + extra, camp.get("exclude_phrases", []))
 
+        force_x = os.environ.get("X_FULL_REFRESH", "").lower() == "true"
+        if force_x:
+            log("X 전체 갱신 요청: 1시간 제한을 무시하고 모든 X 게시물 조회수를 지금 갱신합니다.")
         asyncio.run(collect_telegram(cfg, data, matcher_for, start, end, now, errors))
-        collect_x(cfg, data, matcher_for, start, end, now, errors, final=final)
+        collect_x(cfg, data, matcher_for, start, end, now, errors, final=final or force_x)
         load_manual_posts(cfg, data, now, errors)
         collected = True
         if final:
