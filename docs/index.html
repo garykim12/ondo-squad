@@ -523,7 +523,7 @@ span.av { background: var(--c, var(--muted)); }
       const s = sqMap[k.squad] || { color: "var(--muted)", name: k.squad };
       const tgp = k.views ? (k.tg_views / k.views) * 100 : 0;
       const tg = k.telegram ? `<a href="https://t.me/${encodeURIComponent(k.telegram)}" target="_blank" rel="noopener">텔레그램 @${esc(k.telegram)}</a>` : "";
-      const xx = k.x ? `<a href="https://x.com/${encodeURIComponent(k.x)}" target="_blank" rel="noopener">X @${esc(k.x)}</a>` : "";
+      const xx = [k.x, ...(k.x_extra || [])].filter(Boolean).map((h) => `<a href="https://x.com/${encodeURIComponent(h)}" target="_blank" rel="noopener">X @${esc(h)}</a>`).join("");
       return `<li class="kol ${k.rank <= 3 ? "top" : ""}" style="--c:${esc(s.color)}">
         <span class="r">${k.rank}</span>
         <div class="who">${av(k, 38, s.color)}<div><b>${esc(k.name)}</b><span class="tag">${esc(s.name)}</span><div class="handles">${tg}${xx}</div></div></div>
