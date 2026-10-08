@@ -234,6 +234,12 @@ async def collect_telegram(cfg, data, matcher_for, start, end, now, errors, forc
 
 # ---------- X (트위터) ----------
 
+def x_handles(kol):
+    """KOL의 X 계정 목록 (x + x_extra). @ 제거, 원래 대소문자 유지."""
+    hs = [kol.get("x") or ""] + list(kol.get("x_extra") or [])
+    return [h.strip().lstrip("@") for h in hs if h and h.strip()]
+
+
 class XClient:
     def __init__(self, token: str):
         self.s = requests.Session()
@@ -299,9 +305,8 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors, final=False):
 
     handles = {}
     for kol in cfg["kols"]:
-        h = (kol.get("x") or "").strip().lstrip("@").lower()
-        if h:
-            handles[h] = kol
+        for h in x_handles(kol):
+            handles[h.lower()] = kol
 
     # 1) 핸들 → 사용자 ID (한 번 조회 후 캐시)
     ids = state.setdefault("x_user_ids", {})
@@ -425,7 +430,7 @@ def collect_x_included(cfg, data, forced_x, start, end, now, errors):
     new_ids = [i for i in forced_x if f"x:{i}" not in data["posts"] or data["posts"][f"x:{i}"].get("deleted")]
     if not token or not new_ids:
         return
-    by_handle = {(k.get("x") or "").strip().lstrip("@").lower(): k for k in cfg["kols"] if k.get("x")}
+    by_handle = {h.lower(): k for k in cfg["kols"] for h in x_handles(k)}
     x = XClient(token)
     for i in range(0, len(new_ids), 100):
         batch = new_ids[i:i + 100]
@@ -526,7 +531,7 @@ def aggregate(cfg, data):
     for k in cfg["kols"]:
         kols[k["name"]] = {
             "name": k["name"], "squad": k["squad"],
-            "telegram": k.get("telegram", ""), "x": k.get("x", ""),
+            "telegram": k.get("telegram", ""), "x": k.get("x", ""), "x_extra": x_handles(k)[1:],
             "avatar": data["state"].get("tg_avatars", {}).get(k["name"], {}).get("file", ""),
             "posts": 0, "tg_views": 0, "x_views": 0, "other_views": 0, "views": 0,
         }
@@ -580,9 +585,9 @@ def write_exports(cfg, data, kols, squads):
         """조회수 앞에 공통으로 붙는 KOL 정보 열."""
         k = kcfg.get(name, {})
         tg = (k.get("telegram") or "").lstrip("@")
-        x = (k.get("x") or "").lstrip("@")
+        xs = ", ".join(f"https://x.com/{h}" for h in x_handles(k))
         return [k.get("geo") or camp.get("geographic", "Korea"), sq_en(k.get("squad", "")), name,
-                k.get("aid", ""), f"https://t.me/{tg}" if tg else "", f"https://x.com/{x}" if x else ""]
+                k.get("aid", ""), f"https://t.me/{tg}" if tg else "", xs]
 
     ident_head = ["Geographic", "Squad", "Name", "AID", "Channels (TG)", "Channels (X)"]
 
