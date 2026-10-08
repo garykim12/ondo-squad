@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/30 * * * *"
   workflow_dispatch:
+    inputs:
+      x_full_refresh:
+        description: "X 전체 조회수 지금 갱신 (게시물 수만큼 X 비용 발생)"
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -49,6 +54,7 @@ jobs:
           TG_API_HASH: ${{ secrets.TG_API_HASH }}
           TG_SESSION: ${{ secrets.TG_SESSION }}
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          X_FULL_REFRESH: ${{ inputs.x_full_refresh }}
 
       - name: Commit data
         run: |
