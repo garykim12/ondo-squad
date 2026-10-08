@@ -26,6 +26,7 @@ DATA_PATH = ROOT / "docs" / "data.json"
 MANUAL_PATH = ROOT / "docs" / "manual_posts.csv"
 AVATAR_DIR = ROOT / "docs" / "avatars"
 EXCLUDED_PATH = ROOT / "docs" / "excluded_posts.txt"
+INCLUDED_PATH = ROOT / "docs" / "included_posts.txt"
 EXPORT_DIR = ROOT / "docs" / "export"
 KST = timezone(timedelta(hours=9))
 X_API = "https://api.x.com/2"
@@ -110,6 +111,35 @@ def upsert_post(data, key, rec, now, spike_per_hour):
     posts[key] = {**(old or {}), **rec}
 
 
+# ---------- 수동 추가 게시물 (키워드가 없어도 집계) ----------
+
+def read_link_list(path):
+    """한 줄에 링크 하나. 빈 줄과 # 줄은 무시, 링크 뒤 공백 이후는 메모."""
+    if not path.exists():
+        return []
+    out = []
+    for line in path.read_text(encoding="utf-8-sig").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            out.append(line.split()[0])
+    return out
+
+
+def included_targets():
+    """included_posts.txt → ({(텔레그램채널 소문자, 글번호)}, {X 글 ID})"""
+    tg, xs = set(), set()
+    for u in read_link_list(INCLUDED_PATH):
+        n = norm_url(u)
+        m = re.match(r"t\.me/(?:c/)?([^/]+)/(\d+)", n)
+        if m:
+            tg.add((m.group(1), int(m.group(2))))
+            continue
+        m = re.match(r"x\.com/status/(\d+)", n)
+        if m:
+            xs.add(m.group(1))
+    return tg, xs
+
+
 # ---------- 텔레그램 ----------
 
 async def save_avatar(client, entity, kol, data):
@@ -130,7 +160,7 @@ async def save_avatar(client, entity, kol, data):
         log(f"텔레그램 @{slug}: 채널 사진 저장")
 
 
-async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
+async def collect_telegram(cfg, data, matcher_for, start, end, now, errors, forced_tg=frozenset()):
     api_id = os.environ.get("TG_API_ID")
     api_hash = os.environ.get("TG_API_HASH")
     session = os.environ.get("TG_SESSION")
@@ -167,11 +197,14 @@ async def collect_telegram(cfg, data, matcher_for, start, end, now, errors):
                 async for msg in client.iter_messages(entity, offset_date=start, reverse=True):
                     if msg.date > end:
                         break
-                    if msg.fwd_from:  # 다른 채널 글을 전달(포워딩)한 건 집계 제외
+                    forced = (username.lower(), msg.id) in forced_tg or (channel.lower(), msg.id) in forced_tg
+                    if msg.fwd_from and not forced:  # 다른 채널 글을 전달(포워딩)한 건 집계 제외
                         if match(msg.message):
                             fwd += 1
                         continue
                     hits = match(msg.message)
+                    if not hits and forced:
+                        hits = ["수동 추가"]
                     if not hits:
                         continue
                     key = f"tg:{username.lower()}:{msg.id}"
@@ -382,6 +415,48 @@ def collect_x(cfg, data, matcher_for, start, end, now, errors, final=False):
 
 
 
+def collect_x_included(cfg, data, forced_x, start, end, now, errors):
+    """included_posts.txt의 X 글 중 아직 집계에 없는 것만 바로 가져옴 (1시간 제한 무관)."""
+    # 목록에서 지운 수동 추가 X 글은 다시 빠짐
+    for k, p in data["posts"].items():
+        if k.startswith("x:") and p.get("keywords") == ["수동 추가"] and k[2:] not in forced_x:
+            p["deleted"] = True
+    token = os.environ.get("X_BEARER_TOKEN")
+    new_ids = [i for i in forced_x if f"x:{i}" not in data["posts"] or data["posts"][f"x:{i}"].get("deleted")]
+    if not token or not new_ids:
+        return
+    by_handle = {(k.get("x") or "").strip().lstrip("@").lower(): k for k in cfg["kols"] if k.get("x")}
+    x = XClient(token)
+    for i in range(0, len(new_ids), 100):
+        batch = new_ids[i:i + 100]
+        try:
+            res = x.get("/tweets", {"ids": ",".join(batch), "tweet.fields": "created_at,public_metrics,note_tweet,author_id",
+                                    "expansions": "author_id", "user.fields": "username"})
+        except Exception as e:
+            errors.append(f"X 수동 추가: {e}")
+            return
+        users = {u["id"]: u["username"].lower() for u in (res.get("includes") or {}).get("users", [])}
+        for t in res.get("data", []):
+            h = users.get(t.get("author_id"), "")
+            kol = by_handle.get(h)
+            if not kol:
+                errors.append(f"included_posts.txt: X 글 {t['id']}의 작성자 @{h}는 KOL 목록에 없어 추가하지 않았습니다")
+                continue
+            created = parse_dt(t["created_at"])
+            if created < start or created > end:
+                errors.append(f"included_posts.txt: X 글 {t['id']}은 캠페인 기간 밖이라 추가하지 않았습니다")
+                continue
+            upsert_post(data, f"x:{t['id']}", {
+                "platform": "x", "kol": kol["name"],
+                "url": f"https://x.com/{h}/status/{t['id']}",
+                "text": tweet_text(t)[:280], "created_at": iso(created),
+                "keywords": ["수동 추가"], **tweet_metrics(t),
+            }, now, cfg["campaign"].get("spike_views_per_hour", 0))
+            log(f"X 수동 추가: {kol['name']} 글 {t['id']}")
+        for err in res.get("errors", []):
+            errors.append(f"included_posts.txt: X 글 {err.get('resource_id') or err.get('value')}을 찾을 수 없습니다 (삭제·비공개)")
+
+
 # ---------- 수동 입력 게시물 (유튜브, 인스타그램 등) ----------
 
 def parse_local_dt(s):
@@ -579,8 +654,10 @@ def main() -> int:
         force_x = os.environ.get("X_FULL_REFRESH", "").lower() == "true"
         if force_x:
             log("X 전체 갱신 요청: 1시간 제한을 무시하고 모든 X 게시물 조회수를 지금 갱신합니다.")
-        asyncio.run(collect_telegram(cfg, data, matcher_for, start, end, now, errors))
+        forced_tg, forced_x = included_targets()
+        asyncio.run(collect_telegram(cfg, data, matcher_for, start, end, now, errors, forced_tg))
         collect_x(cfg, data, matcher_for, start, end, now, errors, final=final or force_x)
+        collect_x_included(cfg, data, forced_x, start, end, now, errors)
         load_manual_posts(cfg, data, now, errors)
         collected = True
         if final:
