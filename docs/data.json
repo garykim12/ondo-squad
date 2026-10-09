@@ -17,7 +17,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdropcosm:3068": {
@@ -35,7 +35,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdropcosm:3073": {
@@ -54,7 +54,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20584": {
@@ -73,7 +73,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20587": {
@@ -88,11 +88,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20589": {
@@ -110,7 +110,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20592": {
@@ -128,7 +128,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20619": {
@@ -147,7 +147,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20692": {
@@ -156,7 +156,7 @@
    "url": "https://t.me/airdr0p_lab/20692",
    "text": "🟢 Ondo Perps, 10월 첫 주차 정산\n\n-총 거래량: 2.1M\n-소모 수수료: $370.07\n-리워드: $253.81\n-포인트: 약 8,000\n\n대부분의 주문은 Maker로 양빵잡고 있고 10월 30일까지 KBW 할인 들어가서 나름 알뜰하게 포인트 모았습니다.\n\n누적 포인트가 약 14,000 정도인데 리더보드 기준 500위권이라 생각보다 빈 집이라 양빵작 하시는 분들은 사용해보셔도 괜찮을 듯\n\n사용하실 분들은 아래링크 적용시 수수료 할인 30%가 적용되니 사용해주시면 압도적 감사...\n\n",
    "created_at": "2026-10-06T06:06:31Z",
-   "views": 1224,
+   "views": 1225,
    "forwards": 14,
    "keywords": [
     "Ondo",
@@ -166,7 +166,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:myu_moonyu:7894": {
@@ -185,7 +185,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:myu_moonyu:7895": {
@@ -203,7 +203,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:myu_moonyu:7897": {
@@ -221,7 +221,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:lnsanecoin:10967": {
@@ -240,7 +240,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:lnsanecoin:10972": {
@@ -258,7 +258,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:lnsanecoin:10974": {
@@ -276,7 +276,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdrop_kor:21495": {
@@ -296,7 +296,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdrop_kor:21496": {
@@ -315,7 +315,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdrop_kor:21525": {
@@ -330,11 +330,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5593": {
@@ -353,7 +353,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5598": {
@@ -368,11 +368,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14852": {
@@ -410,7 +410,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14858": {
@@ -428,7 +428,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14890": {
@@ -516,11 +516,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:cryptocurrencymage:23478": {
@@ -557,7 +557,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:snatch0x:4227": {
@@ -575,7 +575,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:katzenote:2223": {
@@ -593,7 +593,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38554": {
@@ -609,11 +609,11 @@
     "Ondo Perps",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38558": {
@@ -627,11 +627,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": true
   },
   "tg:gemhive:38574": {
@@ -645,11 +645,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": true
   },
   "tg:gemhive:38575": {
@@ -664,11 +664,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38585": {
@@ -682,11 +682,11 @@
    "keywords": [
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": true
   },
   "tg:gemhive:38590": {
@@ -701,11 +701,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38677": {
@@ -720,11 +720,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38716": {
@@ -744,7 +744,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24124": {
@@ -763,7 +763,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24130": {
@@ -781,7 +781,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24185": {
@@ -790,7 +790,7 @@
    "url": "https://t.me/leedogin2/24185",
    "text": "이번 가장 기대감 많았고, 영감도 받았던 온도 사이드 이벤트 후기\n\n여러 행사를 다녔음에도 가장 인상깊었던 행사 중 하나는 온도가 아니었나 싶네요. 내부 무대부터 케이터링, 운영서비스도 상당히 깔끔하게 운영됐고 외국 친구들도 많아서 전체적으로 상당히 잘 준비했다는 느낌을 받았습니다.\n\n- 카카오페이 증권과 국내 상장주식 유통, 토큰화 MOU\n- 현장 내 주식 실재로 거래하고 활용하는 모습\n- DTCC 펀드 네트워크 진입\n- 8월 주식 TVL 10억 달로 달성\n\n이제 Ondo 내에서도 어떤 식으로 ",
    "created_at": "2026-10-02T06:01:28Z",
-   "views": 977,
+   "views": 978,
    "forwards": 6,
    "keywords": [
     "Ondo",
@@ -800,7 +800,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24210": {
@@ -837,7 +837,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10652": {
@@ -846,18 +846,18 @@
    "url": "https://t.me/forevernft/10652",
    "text": "온도랑 불타기 🔥| Ondo Perps 청담 밋업 후기\n\n오늘 오후 2시부터 청담동에서 열린 Ondo Perps 밋업, 「온도랑 불타기」 다녀왔습니다. \n\n현장 분위기\n등록부터 내부 블루 무대까지 동선도 깔끔했고, 케이터링이나 좌석 운영도 전반적으로 매끄러웠습니다. KBW 사이드 이벤트가 많은 가운데 외국인 참석자 비율도 꽤 높았고, 전체적으로 행사 준비를 많이 했다는 인상이었습니다.\n\nRWA에 진심 \n\"Ondo가 RWA에 진심이구나”\n전날 카카오페이증권과 국내 상장주식의 해외 유통·토큰화 관련 ",
    "created_at": "2026-09-29T08:47:37Z",
-   "views": 853,
+   "views": 854,
    "forwards": 9,
    "keywords": [
     "Ondo",
     "Ondo Perps",
     "온도"
    ],
-   "last_delta": 0,
+   "last_delta": 1,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10662": {
@@ -876,7 +876,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10682": {
@@ -891,11 +891,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10689": {
@@ -909,11 +909,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10718": {
@@ -928,11 +928,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97805": {
@@ -951,7 +951,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97810": {
@@ -970,7 +970,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97811": {
@@ -979,17 +979,17 @@
    "url": "https://t.me/enjoymyhobby/97811",
    "text": "😪 카카오페이증권, 온도파이낸스와 맞손…한국 상장주식 해외 유통한다\n \n📂 협업내용\n🟢한국 상장주식의 해외 유통 체계 구축 \n🟢글로벌 유통 확장을 위한 주식 토큰화 인프라 공동연구 \n🟢해외 개인투자자 대상 사업 협력을 위한 공동 TF 운영 등을 추진\n\n👍 금일 오전에 카카오페이증권이 온도파이낸스와 파트너쉽을 발표하였는데, 행사장에서 카카오페이 담당자가 직접 Ondo 와의 협업 내용에 대해서 설명을 하고있네요\n\n기사보러가기\n\n#ONDO",
    "created_at": "2026-09-29T06:25:38Z",
-   "views": 2743,
+   "views": 2745,
    "forwards": 17,
    "keywords": [
     "Ondo",
     "온도"
    ],
-   "last_delta": 0,
+   "last_delta": 2,
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97814": {
@@ -1008,7 +1008,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22187": {
@@ -1027,7 +1027,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22189": {
@@ -1046,7 +1046,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22272": {
@@ -1064,7 +1064,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22311": {
@@ -1084,7 +1084,7 @@
    "spike": false,
    "first_seen": "2026-10-06T06:11:19Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107129269566746736": {
@@ -1689,11 +1689,11 @@
     "Ondo",
     "온도"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22334": {
@@ -1711,7 +1711,7 @@
    "spike": false,
    "first_seen": "2026-10-06T08:55:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107405554520064118": {
@@ -1772,7 +1772,7 @@
    "spike": false,
    "first_seen": "2026-10-06T13:09:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:airdr0p_lab:20709": {
@@ -1790,7 +1790,7 @@
    "spike": false,
    "first_seen": "2026-10-06T19:00:23Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:myu_moonyu:7916": {
@@ -1808,7 +1808,7 @@
    "spike": false,
    "first_seen": "2026-10-06T19:00:23Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107522176463356252": {
@@ -1867,7 +1867,7 @@
    "spike": false,
    "first_seen": "2026-10-07T02:38:46Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107803079793881104": {
@@ -1919,7 +1919,7 @@
    "url": "https://t.me/forevernft/10742",
    "text": "✔️Ondo Stocks, 유럽 전역으로 확대 \n\nOndo가 MiFID II 규제 플랫폼 Assetera와 연동해 유럽 시장으로 확장합니다.\n\n자격을 갖춘 유럽 투자자는 450개 이상의 토큰화 미국 주식·ETF에 접근할 수 있게 됩니다. 기관 금융 시장의 온체인 확장이 계속되고 있네요. \n트윗원문\n\nOndo Perps에서는 KBW를 기념하여 30일 한정 수수료이벤트중입니다! \n1️⃣Ondo Perps 시작 (신규 등록)\n2️⃣이벤트 등록",
    "created_at": "2026-10-07T13:35:33Z",
-   "views": 624,
+   "views": 625,
    "forwards": 11,
    "keywords": [
     "Ondo",
@@ -1929,7 +1929,7 @@
    "spike": false,
    "first_seen": "2026-10-07T13:48:33Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107826372827902107": {
@@ -2010,7 +2010,7 @@
    "spike": false,
    "first_seen": "2026-10-07T14:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14946": {
@@ -2029,7 +2029,7 @@
    "spike": false,
    "first_seen": "2026-10-07T14:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38932": {
@@ -2049,7 +2049,7 @@
    "spike": false,
    "first_seen": "2026-10-07T15:18:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107845083936833663": {
@@ -2169,11 +2169,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-07T16:18:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2107865517507940633": {
@@ -2271,11 +2271,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 3,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-07T22:48:29Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14959": {
@@ -2294,7 +2294,7 @@
    "spike": false,
    "first_seen": "2026-10-08T01:18:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14961": {
@@ -2312,7 +2312,7 @@
    "spike": false,
    "first_seen": "2026-10-08T01:18:34Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108005107002708093": {
@@ -2341,16 +2341,16 @@
    "url": "https://t.me/CoinWiki_MMWW/5633",
    "text": "생각보다 셀퍼럴 리베이트가 많이 들어왔음 ㅋㅋㅋ 나중에 리워드 받으면 좀 더 멘징될려나🥰🥰🥰 \n\n#ondo",
    "created_at": "2026-10-08T02:36:10Z",
-   "views": 501,
+   "views": 502,
    "forwards": 1,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 4,
+   "last_delta": 1,
    "spike": false,
    "first_seen": "2026-10-08T02:38:37Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinboys:22374": {
@@ -2359,16 +2359,16 @@
    "url": "https://t.me/coinboys/22374",
    "text": "톰 리 아저씨, ETH 10만 개 더 사면 매입 중단한다고 함\n\n최근에 Ondo 행사장에서 만나서 셀카도 찍었던 톰 리의 발언이 이슈. ETH에 진심인 남자라 앞서 소개도 드렸지만...\n\nTOKEN2049 현장에서 비트마인의 ETH 보유량이 600만개를 넘겼고, 약 10만개만 추가 매입하면 목표치인 전체 ETH 공급량 5%에 도달한다고 밝힘.\n\n- 현재 보유량 약 601만 ETH\n- 전체 공급량의 약 4.9%\n- 약 10만 ETH 추가 매입 후 중단 계획\n- 당초 5년 목표 → 약 15개월 만에 ",
    "created_at": "2026-10-08T03:02:01Z",
-   "views": 1803,
+   "views": 1808,
    "forwards": 11,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 3,
+   "last_delta": 5,
    "spike": false,
    "first_seen": "2026-10-08T03:18:29Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108023968276099440": {
@@ -2419,17 +2419,17 @@
    "url": "https://t.me/airdropcosm/3117",
    "text": "Ondo Perps 내일 뭔가 발표하는듯?\n\n포인트의 쓸모를 알려달라.\n\n📌 https://x.com/OndoPerps/status/2107971759442149697",
    "created_at": "2026-10-08T07:29:49Z",
-   "views": 329,
+   "views": 330,
    "forwards": 5,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 0,
+   "last_delta": 1,
    "spike": false,
    "first_seen": "2026-10-08T07:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24297": {
@@ -2438,16 +2438,16 @@
    "url": "https://t.me/leedogin2/24297",
    "text": "☑️ 에드작도 전략적으로 접근해보면 좋은 시대 출처\n\n홈페이지(에드작)\n\n개인적으로, 다음 에드작을 고민해보면 가장 좋은 것 중 하나는 단연 펍덱을 빼놓을 수 없다고 생각하는데, 특히 Ondo, ARCUS 같은 플랫폼들이 초기임에도 상당히 좋은 기회를 주고 있다고 생각합니다.\n\n- NVDA, TSLA 같은 자산 외 SPY, QQQ 등 ETF 스팟 거래 가능\n- NVDA 같은 스팟 보유하면서 숏포지션 잡는 전략도 활용 가능\n- 스팟 거래 수수료는 10월 28일까지 Zero Fee 진행중\n- 매주 $",
    "created_at": "2026-10-08T07:19:59Z",
-   "views": 934,
+   "views": 945,
    "forwards": 8,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 3,
+   "last_delta": 11,
    "spike": false,
    "first_seen": "2026-10-08T07:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:leedogin2:24298": {
@@ -2456,17 +2456,17 @@
    "url": "https://t.me/leedogin2/24298",
    "text": "그리고 별개로, 이번 기간이 조금 좋을 수 있는 상황인게\n\nKBW, 토큰2049 동 기간에 Ondo Perps 에서는 원자재 거래(Spot/Perp) 진행 시 수수료 20%를 별도로 할인받을 수 있습니다.\n\nOI 잡아도 좋고, 직접 거래를 해도 괜찮은데 수수료도 별도로 챙겨볼 수 있으니 기왕지사 포인트 쌓을거라면 지금 계획해봐도 좋을듯 싶네요",
    "created_at": "2026-10-08T07:21:26Z",
-   "views": 971,
+   "views": 982,
    "forwards": 3,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 3,
+   "last_delta": 11,
    "spike": false,
    "first_seen": "2026-10-08T07:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10746": {
@@ -2480,11 +2480,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 5,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-08T07:48:31Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108097633416048686": {
@@ -2518,15 +2518,15 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "views": 308,
+   "views": 310,
    "likes": 0,
    "reposts": 0,
    "replies": 0,
-   "last_delta": 0,
+   "last_delta": 2,
    "spike": false,
    "first_seen": "2026-10-08T10:19:49Z",
    "deleted": false,
-   "updated_at": "2026-10-09T04:18:28Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108132039723786565": {
@@ -2539,7 +2539,7 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "views": 376,
+   "views": 383,
    "likes": 0,
    "reposts": 0,
    "replies": 1,
@@ -2547,7 +2547,7 @@
    "spike": false,
    "first_seen": "2026-10-08T10:19:49Z",
    "deleted": false,
-   "updated_at": "2026-10-09T04:18:28Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:coinwiki_mmww:5602": {
@@ -2556,16 +2556,16 @@
    "url": "https://t.me/CoinWiki_MMWW/5602",
    "text": "뒤늦은 밋업 현장 분위기 & 참여 후기\n\n클럽을 통대관해서 진행된 덕분에 자리도 넉넉하고 케이터링/음식도 여유로워 쾌적하게 즐길 수 있었습니다.\n\n특히 코같투님, 불개미님과 AMA 형식으로 진행된 세션이 인상적이었는데요. 참가자들이 평소 궁금해하던 핵심 질문들을 시원하게 대신 던져주고 풀어주셔서 아주 알찬 시간이였어요\n\n참고로 짜x 님과 빨간뚜껑(빨뚜) 달린 이후 하루가 통째로 삭제되는 이슈 발생...\n\n오프라인 밋업 참여 경험이 많지 않은 편인데도, 저에겐 유익한 자리였습니다🥰🥰",
    "created_at": "2026-10-01T10:13:59Z",
-   "views": 615,
+   "views": 617,
    "forwards": 2,
    "keywords": [
     "수동 추가"
    ],
-   "last_delta": 0,
+   "last_delta": 2,
    "spike": false,
    "first_seen": "2026-10-08T10:51:53Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:gemhive:38945": {
@@ -2580,11 +2580,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-08T11:18:56Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14974": {
@@ -2603,7 +2603,7 @@
    "spike": false,
    "first_seen": "2026-10-08T12:18:29Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108169890813411644": {
@@ -2639,11 +2639,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-08T14:18:35Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14976": {
@@ -2658,11 +2658,11 @@
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 1,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-08T14:18:35Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:forevernft:10754": {
@@ -2671,17 +2671,17 @@
    "url": "https://t.me/forevernft/10754",
    "text": "✔️Ondo 프라이빗 마켓, OpenAI 거래 시작 \n\nOndo Perps에서 OpenAI 비상장 주식의 가치에 연동되는 토큰화 상품 거래가 시작됐습니다.\n\n주요 특징\n- IPO 이전에 OpenAI 기업 가치에 투자 가능\n- Ondo Perps 현물 오더북에서 24시간 거래\n- 개인 지갑 보관 및 적격 투자자 간 양도 지원\n- Ondo 인프라 기반, TVL 39억 달러 이상\n\n✍️ 개인적으로 생겼으면 하는 기능이였는데, 마침 오늘 관련 내용이 나왔네요. \nOpenAI처럼 개인 투자자가 접근하기 어",
    "created_at": "2026-10-08T14:19:01Z",
-   "views": 515,
+   "views": 518,
    "forwards": 6,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 5,
+   "last_delta": 3,
    "spike": false,
    "first_seen": "2026-10-08T14:18:35Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108200448339702100": {
@@ -2819,11 +2819,11 @@
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 2,
+   "last_delta": 0,
    "spike": false,
    "first_seen": "2026-10-08T14:48:35Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108202169526874143": {
@@ -2873,16 +2873,16 @@
    "url": "https://t.me/forevernft/10757",
    "text": "✔️Citrini Research, 주목할 암호화폐 프로젝트 선정\n\nCitrini Research가 전통 금융의 온체인 전환을 다룬 보고서에서 주요 암호화폐 프로젝트를 선정했습니다.\n\n주요 선정 프로젝트\n- DeFi: ONDO, AAVE, UNI, PENDLE\n- 파생상품: Hyperliquid, Lighter, Variational\n- 인프라: ETHFI 등\n\n✍️보고서는 앞으로 단순 거래량 증가보다 실제 수익 모델, 수수료 분배, 토큰 보유자 참여가 더욱 중요해질 것이라고 강조했습니다. 특히 ",
    "created_at": "2026-10-09T02:48:16Z",
-   "views": 783,
+   "views": 791,
    "forwards": 19,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 14,
+   "last_delta": 8,
    "spike": false,
    "first_seen": "2026-10-09T02:48:28Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97941": {
@@ -2891,16 +2891,16 @@
    "url": "https://t.me/enjoymyhobby/97941",
    "text": "👍 Citrini Research 에서 선정한 프로젝트\n\n✅ 유명 리서치기관 Citrini Research 에서 주식, 채권등 전통 금융자산이 블록체인으로 이동할 경우, BTC, ETH 보다 더 큰 수혜를 받을수 있는 프로젝트들을 선정하였습니다\n\n📂 Citrini Research 가 주목한 주요 프로젝트\n🟢거래 및 파생상품 인프라 : AERO | UNI | DRV\n🟢대출 및 수익 상품 : SYRUP | PENDLE | AAVE\n🟢RWA 및 스테이블 코인 금융 : ONDO | ENA | ETHFI\n",
    "created_at": "2026-10-09T04:04:54Z",
-   "views": 1289,
+   "views": 1331,
    "forwards": 12,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 33,
+   "last_delta": 42,
    "spike": false,
    "first_seen": "2026-10-09T04:18:28Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:enjoymyhobby:97942": {
@@ -2909,16 +2909,16 @@
    "url": "https://t.me/enjoymyhobby/97942",
    "text": "😪  Ondo Private Market 출시\n\n✅ Ondo Finance 에서 산업을 이끄는 주요 비상장 기업에 토큰화된 형태로 투자할수 있는 새로운 시장을 공개하였습니다\n\n📂 주요 내용\n🟢 24시간 연중무휴 거래\n🟢 유망 기업이 IPO(기업공개)를 진행하기 전부터 투자할 수 있는 기회를 제공\n🟢2차 시장을 통한 포지션 매매\n🟢AI, 로봇, 사이버보안, 바이오, 인프라 등으로 확장\n\n✍ Ondo Finance 는 기존의 미국 주식 및 ETF 토큰화를 넘어서 일반 투자자의 접근이 어려웠던 비상장 ",
    "created_at": "2026-10-09T04:11:56Z",
-   "views": 1430,
+   "views": 1464,
    "forwards": 10,
    "keywords": [
     "Ondo"
    ],
-   "last_delta": 39,
+   "last_delta": 34,
    "spike": false,
    "first_seen": "2026-10-09T04:18:28Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14984": {
@@ -2927,7 +2927,7 @@
    "url": "https://t.me/pgyinfo/14984",
    "text": "Ondo Perps 이스터에그\n\nhttps://app.ondoperps.xyz/referrals\n레퍼럴 화면으로 가면 위에 여러 NFT  인지 실제 프로필 사진들인지가 계속 뒤집히는데\n그냥 무시하고 있다가 심심해서 눌러보니까\n내가 누르는데로 뒤집힘\n\n혹시? 하고 뒤집다가 같은 그림 3개를 뒤집으니\n이펙트와 함께 토큰이 우르르 쏟아짐\n\n뭐 주는건 당연히 아닌것 같고\n그냥 이스터에그\n\n심심할때 해보시길\n\n더 심심하다면 파구퍼럴\nhttps://app.ondoperps.xyz/?ref=K6C9FL",
    "created_at": "2026-10-09T05:34:58Z",
-   "views": 185,
+   "views": 189,
    "forwards": 4,
    "keywords": [
     "Ondo",
@@ -2937,7 +2937,7 @@
    "spike": false,
    "first_seen": "2026-10-09T05:48:30Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "tg:pgyinfo:14985": {
@@ -2946,17 +2946,17 @@
    "url": "https://t.me/pgyinfo/14985",
    "text": "Ondo Perps 가 포인트로 $ONDO 를 준다면?\n\n아주 보수적으로는 0.2% = 20M $ONDO\n많으면 1% = 100M $ONDO\n\n현재 가격 $0.4857 기준\n\n현재 19주차 진행 중이고\n1주마다 500만 포인트 분배\n\n0.5% 분배 시\n\n12월말 까지 진행\n - 포당 $0.1567\n\n3월말까지 진행\n - 포당 $0.11\n\n6월말까지 진행\n - 포당 $0.085\n\n파구가 지금 $0.075 / 포인트 정도로 캐고 있음\nDiscount 도 다 빼고 현재 Fee 기준 순수 체급으로\n\n뭐 ",
    "created_at": "2026-10-09T05:56:21Z",
-   "views": 659,
-   "forwards": 9,
+   "views": 779,
+   "forwards": 10,
    "keywords": [
     "Ondo",
     "Ondo Perps"
    ],
-   "last_delta": 448,
+   "last_delta": 120,
    "spike": false,
    "first_seen": "2026-10-09T06:18:30Z",
    "deleted": false,
-   "updated_at": "2026-10-09T09:48:31Z",
+   "updated_at": "2026-10-09T10:18:29Z",
    "excluded": false
   },
   "x:2108437059300098206": {
@@ -4063,6 +4063,14 @@
     "A": 44134,
     "B": 25853
    }
+  },
+  {
+   "t": "2026-10-09T10:18:29Z",
+   "s": {
+    "C": 53843,
+    "A": 44136,
+    "B": 25980
+   }
   }
  ],
  "state": {
@@ -4147,7 +4155,7 @@
   },
   "x_since_id": {
    "auz2or": "2108438099839897606",
-   "oldman_cek": "2108413260798320997",
+   "oldman_cek": "2108495022991753664",
    "moonyu_myu": "2108233672809988191",
    "yeonwoohoiic": "2108242960949420051",
    "airdropkor_eth": "2107495083365089381",
@@ -4162,16 +4170,16 @@
    "myhobby_yt": "2108267786573418522",
    "coinboy717": "2108389098427986203"
   },
-  "x_last_run": "2026-10-09T09:18:29Z",
+  "x_last_run": "2026-10-09T10:18:29Z",
   "x_reads_by_day": {
    "2026-10-06": 319,
    "2026-10-07": 79,
    "2026-10-08": 179,
-   "2026-10-09": 107
+   "2026-10-09": 110
   },
-  "x_last_summary": "새 키워드 글 0개, 조회수 갱신 1개"
+  "x_last_summary": "새 키워드 글 0개, 조회수 갱신 2개"
  },
- "updated_at": "2026-10-09T09:48:31Z",
+ "updated_at": "2026-10-09T10:18:29Z",
  "errors": [],
  "campaign": {
   "name": "Exilist × Ondo Perps 스쿼드 캠페인",
@@ -4194,9 +4202,9 @@
    "id": "C",
    "name": "스쿼드 C",
    "color": "#0E9F6E",
-   "views": 53715,
-   "tg_views": 45221,
-   "x_views": 8494,
+   "views": 53843,
+   "tg_views": 45340,
+   "x_views": 8503,
    "other_views": 0,
    "posts": 51,
    "members": [
@@ -4212,8 +4220,8 @@
    "id": "A",
    "name": "스쿼드 A",
    "color": "#E8472B",
-   "views": 44134,
-   "tg_views": 22301,
+   "views": 44136,
+   "tg_views": 22303,
    "x_views": 21833,
    "other_views": 0,
    "posts": 47,
@@ -4230,8 +4238,8 @@
    "id": "B",
    "name": "스쿼드 B",
    "color": "#2B63E8",
-   "views": 25853,
-   "tg_views": 11075,
+   "views": 25980,
+   "tg_views": 11202,
    "x_views": 14778,
    "other_views": 0,
    "posts": 44,
@@ -4268,10 +4276,10 @@
    "x_extra": [],
    "avatar": "avatars/airdropcosm.jpg?v=6156781841986733115",
    "posts": 18,
-   "tg_views": 2020,
+   "tg_views": 2021,
    "x_views": 10967,
    "other_views": 0,
-   "views": 12987,
+   "views": 12988,
    "rank": 2
   },
   {
@@ -4282,10 +4290,10 @@
    "x_extra": [],
    "avatar": "avatars/forevernft.jpg?v=6240139348955302716",
    "posts": 14,
-   "tg_views": 10766,
+   "tg_views": 10779,
    "x_views": 1986,
    "other_views": 0,
-   "views": 12752,
+   "views": 12765,
    "rank": 3
   },
   {
@@ -4296,10 +4304,10 @@
    "x_extra": [],
    "avatar": "avatars/enjoymyhobby.jpg?v=6116088551570524833",
    "posts": 6,
-   "tg_views": 12681,
+   "tg_views": 12759,
    "x_views": 0,
    "other_views": 0,
-   "views": 12681,
+   "views": 12759,
    "rank": 4
   },
   {
@@ -4310,10 +4318,10 @@
    "x_extra": [],
    "avatar": "avatars/coinboys.jpg?v=6291834979784265663",
    "posts": 9,
-   "tg_views": 8403,
+   "tg_views": 8408,
    "x_views": 3084,
    "other_views": 0,
-   "views": 11487,
+   "views": 11492,
    "rank": 5
   },
   {
@@ -4325,9 +4333,9 @@
    "avatar": "avatars/gemhive.jpg?v=6183809422640401614",
    "posts": 17,
    "tg_views": 7909,
-   "x_views": 3424,
+   "x_views": 3433,
    "other_views": 0,
-   "views": 11333,
+   "views": 11342,
    "rank": 6
   },
   {
@@ -4338,10 +4346,10 @@
    "x_extra": [],
    "avatar": "avatars/coinwiki_mmww.jpg?v=6235496351869373543",
    "posts": 10,
-   "tg_views": 4726,
+   "tg_views": 4729,
    "x_views": 5473,
    "other_views": 0,
-   "views": 10199,
+   "views": 10202,
    "rank": 7
   },
   {
@@ -4352,10 +4360,10 @@
    "x_extra": [],
    "avatar": "avatars/airdr0p_lab.jpg?v=6289359180242466732",
    "posts": 8,
-   "tg_views": 9180,
+   "tg_views": 9181,
    "x_views": 596,
    "other_views": 0,
-   "views": 9776,
+   "views": 9777,
    "rank": 8
   },
   {
@@ -4366,10 +4374,10 @@
    "x_extra": [],
    "avatar": "avatars/pgyinfo.jpg?v=6165719144943692176",
    "posts": 23,
-   "tg_views": 3988,
+   "tg_views": 4112,
    "x_views": 2972,
    "other_views": 0,
-   "views": 6960,
+   "views": 7084,
    "rank": 9
   },
   {
@@ -4394,10 +4402,10 @@
    "x_extra": [],
    "avatar": "avatars/leedogin2.jpg?v=6226672294315102059",
    "posts": 5,
-   "tg_views": 5462,
+   "tg_views": 5485,
    "x_views": 0,
    "other_views": 0,
-   "views": 5462,
+   "views": 5485,
    "rank": 11
   },
   {
